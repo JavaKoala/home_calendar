@@ -21,6 +21,10 @@ class EventsController < ApplicationController
     @event.update(event_params)
   end
 
+  def destroy
+    @event.destroy
+  end
+
   private
     def set_event
       @event = Event.find(params[:id])
