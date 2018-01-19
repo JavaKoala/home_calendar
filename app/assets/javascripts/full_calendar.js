@@ -13,7 +13,12 @@ initialize_calendar = function() {
       editable: true,
       eventLimit: true,
       defaultView: 'agendaWeek',
-      contentHeight: 'auto'
+      contentHeight: 'auto',
+      select: function(start, end) {
+        $.getScript('/events/new', function() {});
+
+        calendar.fullCalendar('unselect');
+      }
     });
   })
 };
