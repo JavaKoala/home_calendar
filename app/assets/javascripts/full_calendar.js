@@ -39,7 +39,10 @@ initialize_calendar = function() {
       },
 
       eventClick: function(event, jsEvent, view) {
-        $.getScript(event.edit_url, function() {});
+        $.getScript(event.edit_url, function() {
+          $('.start_hidden').val(moment(event.start).format('YYYY-MM-DD HH:mm'));
+          $('.end_hidden').val(moment(event.end).format('YYYY-MM-DD HH:mm'));
+        });
       }
     });
   })

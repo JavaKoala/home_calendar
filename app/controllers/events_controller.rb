@@ -14,6 +14,13 @@ class EventsController < ApplicationController
     @event.save
   end
 
+  def edit
+  end
+
+  def update
+    @event.update(event_params)
+  end
+
   private
     def set_event
       @event = Event.find(params[:id])
