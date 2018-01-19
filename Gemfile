@@ -31,6 +31,8 @@ gem 'jbuilder', '~> 2.5'
 # gem 'bcrypt', '~> 3.1.7'
 # Use jquery
 gem 'jquery-rails', '~> 4.3', '>= 4.3.1'
+# Bootstrap for styling
+gem 'bootstrap-sass', '~> 3.3', '>= 3.3.7'
 
 # Use fullcalendar for the calendar
 gem 'fullcalendar-rails', '~> 3.4'
