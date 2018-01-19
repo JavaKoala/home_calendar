@@ -14,10 +14,32 @@ initialize_calendar = function() {
       eventLimit: true,
       defaultView: 'agendaWeek',
       contentHeight: 'auto',
+      events: '/events.json',
       select: function(start, end) {
-        $.getScript('/events/new', function() {});
-
+        $.getScript('/events/new', function() {
+          $('.start_hidden').val(moment(start).format('YYYY-MM-DD HH:mm'));
+          $('.end_hidden').val(moment(end).format('YYYY-MM-DD HH:mm'));
+        });
         calendar.fullCalendar('unselect');
+      },
+
+      eventDrop: function(event, delta, revertFunc) {
+        event_data = {
+          event: {
+            id: event.id,
+            start: event.start.format(),
+            end: event.end.format()
+          }
+        };
+        $.ajax({
+            url: event.update_url,
+            data: event_data,
+            type: 'PATCH'
+        });
+      },
+
+      eventClick: function(event, jsEvent, view) {
+        $.getScript(event.edit_url, function() {});
       }
     });
   })
