@@ -13,6 +13,10 @@ initialize_calendar = function() {
       editable: true,
       eventLimit: true,
       defaultView: 'agendaWeek',
+      allDaySlot: false,
+      minTime: "08:00:00",
+      maxTime: "23:00:00",
+      nowIndicator: true,
       contentHeight: 'auto',
       events: '/events.json',
       select: function(start, end) {
