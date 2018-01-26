@@ -14,3 +14,19 @@
 @import "bootstrap-sprockets";
 @import "bootstrap";
 @import "fullcalendar";
+
+h2 {
+  font-size: 45px;
+}
+
+.fc button {
+  font-size: 1.5em;
+}
+
+.fc table {
+  font-size: 1.2em;
+}
+
+.fc-event {
+  font-size: 1.0em;
+}
