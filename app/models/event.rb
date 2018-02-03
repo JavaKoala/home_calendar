@@ -6,6 +6,6 @@ class Event < ApplicationRecord
   end
 
   def end_before_start
-    errors.add(:start, "End can't be before start") if self.end < self.start
+    errors.add(:end, "can't be before start") if self.end < self.start
   end
 end
