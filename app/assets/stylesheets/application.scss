@@ -31,29 +31,27 @@ h2 {
   font-size: 1.0em;
 }
 
-@media (max-width: 768px) {
-  .modal-dialog {
-    width: 100%;
-  }
+.modal-dialog {
+  width: 100%;
+}
 
-  h4 {
-    font-size: 30px;
-  }
+h4 {
+  font-size: 30px;
+}
 
-  .close {
-    font-size: 30px;
-  }
+.close {
+  font-size: 30px;
+}
 
-  label {
-    font-size: 20px;
-  }
+label {
+  font-size: 20px;
+}
 
-  .form-control {
-    height: 40px;
-    font-size: 20px;
-  }
+.form-control {
+  height: 40px;
+  font-size: 20px;
+}
 
-  .btn {
-    font-size: 20px;
-  }
+.btn {
+  font-size: 20px;
 }
