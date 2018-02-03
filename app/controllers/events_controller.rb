@@ -11,14 +11,20 @@ class EventsController < ApplicationController
 
   def create
     @event = Event.new(event_params)
-    @event.save
+    if @event.save
+    else
+      flash[:danger] = @event.errors.full_messages[0]
+    end
   end
 
   def edit
   end
 
   def update
-    @event.update(event_params)
+    if @event.update(event_params)
+    else
+      flash[:danger] = @event.errors.full_messages[0]
+    end
   end
 
   def destroy
