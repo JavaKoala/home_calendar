@@ -1,24 +1,38 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+This is a calendar application based on Drifting Ruby's calendar application ( https://www.driftingruby.com/episodes/fullcalendar-events-and-scheduling )
+It uses Ruby on Rails with MySQL, FullCalendar ( https://fullcalendar.io ), and moment.js ( https://momentjs.com )
+The goal of this project was to learn about FullCalendar and make something mobile friendly.
+To that end this application differs from Drifting Ruby's in that it uses HTML5 datetime pickers in the event forms.
+The FullCalendar configuration is also more mobile friendly.
 
-Things you may want to cover:
+## OSX Development Setup
 
-* Ruby version
+### Install homebrew
 
-* System dependencies
+https://brew.sh
 
-* Configuration
+### Install Mysql
 
-* Database creation
+brew install mysql
+Don't forget to secure your installation!
 
-* Database initialization
+### Install Ruby version 2.5.0
 
-* How to run the test suite
+I like rbenv ( https://github.com/rbenv/rbenv ), but rvm works too
 
-* Services (job queues, cache servers, search engines, etc.)
+### Clone the repository
 
-* Deployment instructions
+git clone https://github.com/JavaKoala/home_calendar.git
 
-* ...
+### Application setup (in the folder with the application)
+
+1. gem install bundler
+2. bundle install
+3. cp config/database.yml.sample config/database.yml
+4. update database.yml to your database configuration
+5. bundle exec rake db:create
+6. bundle exec rake db:migrate
+7. bundle exec rake test
+8. bundle exec rails server
+9. go to http://localhost:3000 in a web browser to see the application
