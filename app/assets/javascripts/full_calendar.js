@@ -24,8 +24,7 @@ initialize_calendar = function() {
       select: function(start, end) {
         eventStart = moment(start).format('YYYY-MM-DD').concat('T').concat(moment(start).format('HH:mm'));
         eventEnd = moment(end).format('YYYY-MM-DD').concat('T').concat(moment(end).format('HH:mm'));
-        $.getScript('/events/new', function() {
-        });
+        $.getScript('/events/new');
         calendar.fullCalendar('unselect');
       },
 
@@ -45,8 +44,7 @@ initialize_calendar = function() {
       },
 
       eventClick: function(event, jsEvent, view) {
-        $.getScript(event.edit_url, function() {
-        });
+        $.getScript(event.edit_url);
       }
     });
   })
