@@ -7,12 +7,13 @@
 <%= simple_form_for @event, remote: true do |f| %>
   <div class="form-inputs">
     <%= f.input :title %>
+    <%= f.input :start, as: :datetime, html5: true %>
+    <%= f.input :end, as: :datetime, html5: true %>
     <% if @event.start.nil? and @event.end.nil? %>
-      <%= f.input_field :start, as: :hidden, value: Date.today, class: 'form-control input-sm start_hidden' %>
-      <%= f.input_field :end, as: :hidden, value: Date.today, class: 'form-control input-sm end_hidden' %>
-    <% else %>
-      <%= f.input :start, as: :datetime, html5: true %>
-      <%= f.input :end, as: :datetime, html5: true %>
+      <script type="text/javascript">
+        document.getElementById('event_start').value = eventStart;
+        document.getElementById('event_end').value = eventEnd;
+      </script>
     <% end %>
     <%= f.input :color, as: :select, collection: [['Black','black'], 
                                                   ['Green','green'], 
