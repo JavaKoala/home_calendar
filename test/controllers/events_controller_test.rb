@@ -7,23 +7,30 @@ class EventsControllerTest < ActionDispatch::IntegrationTest
   end
 
   test 'should create new event' do
-    get root_path
+    visit('/')
     assert_difference 'Event.count', 1 do
-      post events_path, params: { event: { title: 'test title', 
-                                           start: '2018-01-03 07:00:00',
-                                           end: '2018-01-03 09:00:00',
-                                           color: 'green' } }
-      assert_response :success
+      first('td', class: 'fc-widget-content').click
+      fill_in('event_title', with: 'test title')
+      fill_in('event_start', with: Date.today.strftime("%m/%d/%Y") + "\t09:00AM")
+      fill_in('event_end', with: Date.today.strftime("%m/%d/%Y") + "\t02:00PM")
+      select('Green', from: 'event_color')
+      click_button('Create Event')
+      has_content?('test title')
     end
   end
 
   test 'should not create new event where the end is before the start' do
+    visit('/')
     assert_no_difference 'Event.count' do
-      post events_path, params: { event: { title: 'test title', 
-                                           start: '2018-01-03 09:00:00',
-                                           end: '2018-01-03 07:00:00',
-                                           color: 'green' } }
-      assert_response :success
+      first('td', class: 'fc-widget-content').click
+      fill_in('event_title', with: 'test title')
+      fill_in('event_start', with: Date.today.strftime("%m/%d/%Y") + "\t11:00AM")
+      fill_in('event_end', with: Date.today.strftime("%m/%d/%Y") + "\t09:00AM")
+      select('Green', from: 'event_color')
+      assert_raises ActionView::Template::Error do
+        click_button('Create Event')
+        !has_content?('test title')
+      end
     end
   end
 
