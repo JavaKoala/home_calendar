@@ -11,8 +11,10 @@ class EventsController < ApplicationController
 
   def create
     @event = Event.new(event_params)
-    if @event.save
+    if @event.valid?
+      @event.save
     else
+      redirect_to root_url
       flash[:danger] = @event.errors.full_messages[0]
     end
   end
@@ -23,6 +25,7 @@ class EventsController < ApplicationController
   def update
     if @event.update(event_params)
     else
+      redirect_to root_url
       flash[:danger] = @event.errors.full_messages[0]
     end
   end
