@@ -10,6 +10,9 @@ initialize_calendar = function() {
         center: 'title',
         right: 'month,agendaWeek,agendaDay'
       },
+      longPressDelay: 500,
+      eventLongPressDelay: 500,
+      selectLongPressDelay: 500,
       selectable: true,
       selectHelper: true,
       editable: true,
