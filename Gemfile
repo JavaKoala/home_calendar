@@ -37,7 +37,7 @@ gem 'bootstrap-sass', '~> 3.3', '>= 3.3.7'
 gem 'simple_form', '~> 3.5'
 
 # Use fullcalendar for the calendar
-gem 'fullcalendar-rails', '~> 3.4'
+gem 'fullcalendar-rails', '~> 3.9'
 # Use momentjs for the JavaScript date formating
 gem 'momentjs-rails', '~> 2.17', '>= 2.17.1'
 
