@@ -13,6 +13,7 @@ class EventsControllerTest < ActionDispatch::IntegrationTest
     fill_in('event_end', with: Date.today.strftime("%m/%d/%Y") + "\t" + end_time)
     select(event_color, from: 'event_color')
     click_button('Create Event')
+    sleep 0.3
   end
 
   test 'should create new event' do
