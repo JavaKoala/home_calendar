@@ -32,7 +32,7 @@ gem 'jbuilder', '~> 2.5'
 # Use jquery
 gem 'jquery-rails', '~> 4.3', '>= 4.3.1'
 # Bootstrap for styling
-gem 'bootstrap-sass', '~> 3.3', '>= 3.3.7'
+gem 'bootstrap-sass', '~> 3.4'
 # Forms Using simple form
 gem 'simple_form', '~> 4.1'
 
