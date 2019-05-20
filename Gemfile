@@ -7,7 +7,7 @@ end
 
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', '~> 5.1.4'
+gem 'rails', '~> 5.2'
 # Use mysql as the database for Active Record
 gem 'mysql2', '>= 0.3.18', '< 0.5'
 # Use Puma as the app server
@@ -34,7 +34,7 @@ gem 'jquery-rails', '~> 4.3', '>= 4.3.1'
 # Bootstrap for styling
 gem 'bootstrap-sass', '~> 3.3', '>= 3.3.7'
 # Forms Using simple form
-gem 'simple_form', '~> 3.5'
+gem 'simple_form', '~> 4.1'
 
 # Use fullcalendar for the calendar
 gem 'fullcalendar-rails', '~> 3.9'
