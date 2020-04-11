@@ -34,7 +34,7 @@ gem 'jquery-rails', '~> 4.3', '>= 4.3.1'
 # Bootstrap for styling
 gem 'bootstrap-sass', '~> 3.4'
 # Forms Using simple form
-gem 'simple_form', '~> 4.1'
+gem 'simple_form', '~> 5.0'
 
 # Use fullcalendar for the calendar
 gem 'fullcalendar-rails', '~> 3.9'
