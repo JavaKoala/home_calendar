@@ -1,7 +1,7 @@
 source 'https://rubygems.org'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', '~> 6.0'
+gem 'rails', '~> 6.1'
 # Use mysql as the database for Active Record
 gem 'mysql2', '~> 0.5.6'
 # Use Puma as the app server
@@ -33,7 +33,7 @@ gem 'simple_form', '~> 5.0'
 # Use fullcalendar for the calendar
 gem 'fullcalendar-rails', '~> 3.9'
 # Use momentjs for the JavaScript date formating
-gem 'momentjs-rails', '~> 2.17', '>= 2.17.1'
+gem 'momentjs-rails', '~> 2.29'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
