@@ -24,7 +24,7 @@ gem 'jbuilder', '~> 2.12'
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 # Use jquery
-gem 'jquery-rails', '~> 4.3', '>= 4.3.1'
+gem 'jquery-rails', '~> 4.6'
 # Bootstrap for styling
 gem 'bootstrap-sass', '~> 3.4'
 # Forms Using simple form
