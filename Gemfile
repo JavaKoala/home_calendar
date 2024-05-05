@@ -42,11 +42,6 @@ group :development, :test do
   gem 'capybara', '~> 3.40'
   gem 'selenium-webdriver'
   gem 'webdrivers', '~> 5.3'
-  # Use capistrano for deployment
-  gem 'capistrano', '~> 3.10'
-  gem 'capistrano-rails', '~> 1.3'
-  gem 'capistrano-rbenv', '~> 2.1'
-  gem 'capistrano-passenger', '~> 0.2.0'
 end
 
 group :development do
