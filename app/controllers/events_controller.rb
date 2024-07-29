@@ -25,7 +25,7 @@ class EventsController < ApplicationController
     return if @event.update(event_params)
 
     redirect_to root_url
-    flash[:danger] = @event.errors.full_messages[0]
+    flash[:danger] = @event.errors.full_messages[0] # rubocop:disable Rails/ActionControllerFlashBeforeRender
   end
 
   def destroy
