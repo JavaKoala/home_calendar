@@ -1,5 +1,5 @@
 class EventsController < ApplicationController
-  before_action :set_event, only: [:show, :edit, :update, :destroy]
+  before_action :set_event, only: %i[edit update destroy]
 
   def index
     @events = Event.where(start: params[:start]..params[:end])
@@ -8,6 +8,8 @@ class EventsController < ApplicationController
   def new
     @event = Event.new
   end
+
+  def edit; end
 
   def create
     @event = Event.new(event_params)
@@ -19,15 +21,11 @@ class EventsController < ApplicationController
     end
   end
 
-  def edit
-  end
-
   def update
-    if @event.update(event_params)
-    else
-      redirect_to root_url
-      flash[:danger] = @event.errors.full_messages[0]
-    end
+    return if @event.update(event_params)
+
+    redirect_to root_url
+    flash[:danger] = @event.errors.full_messages[0]
   end
 
   def destroy
@@ -35,11 +33,12 @@ class EventsController < ApplicationController
   end
 
   private
-    def set_event
-      @event = Event.find(params[:id])
-    end
 
-    def event_params
-      params.require(:event).permit(:title, :start, :end, :color)
-    end
+  def set_event
+    @event = Event.find(params[:id])
+  end
+
+  def event_params
+    params.require(:event).permit(:title, :start, :end, :color)
+  end
 end

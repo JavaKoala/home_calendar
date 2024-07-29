@@ -1,0 +1,12 @@
+require:
+  - rubocop-rails
+  - rubocop-capybara
+
+Style/FrozenStringLiteralComment:
+  Enabled: false
+
+Style/Documentation:
+  Enabled: false
+
+AllCops:
+    NewCops: enable

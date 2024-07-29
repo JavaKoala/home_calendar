@@ -1,7 +1,6 @@
 require 'test_helper'
 
 class EventsTest < ActionDispatch::IntegrationTest
-
   def setup
     @event1 = events(:one)
   end
@@ -9,17 +8,17 @@ class EventsTest < ActionDispatch::IntegrationTest
   def create_event(start_time, end_time, event_color)
     first('td', class: 'fc-widget-content').click
     fill_in('event_title', with: 'test title')
-    fill_in('event_start', with: Date.today.strftime("%m/%d/%Y") + "\t" + start_time)
-    fill_in('event_end', with: Date.today.strftime("%m/%d/%Y") + "\t" + end_time)
+    fill_in('event_start', with: "#{Time.zone.today.strftime('%m/%d/%Y')}\t#{start_time}")
+    fill_in('event_end', with: "#{Time.zone.today.strftime('%m/%d/%Y')}\t#{end_time}")
     select(event_color, from: 'event_color')
-    click_button('Create Event')
+    click_on('Create Event')
     sleep 0.3
   end
 
   test 'should create new event' do
     visit('/')
     assert_difference 'Event.count', 1 do
-      create_event("09:00AM", "02:00PM", 'Green')
+      create_event('09:00AM', '02:00PM', 'Green')
       assert has_content?('test title')
     end
   end
@@ -27,15 +26,15 @@ class EventsTest < ActionDispatch::IntegrationTest
   test 'should not create new event where the end is before the start' do
     visit('/')
     assert_no_difference 'Event.count' do
-      create_event("11:00AM", "09:00AM", 'Green')
-      assert !has_content?('test title')
+      create_event('11:00AM', '09:00AM', 'Green')
+      assert_not has_content?('test title')
       assert has_content?("End can't be before start")
     end
   end
 
   test 'should redirect to root_url for new event where the end is before the start' do
     assert_no_difference 'Event.count' do
-      post events_path, params: { event: { title: 'test title', 
+      post events_path, params: { event: { title: 'test title',
                                            start: '2018-01-03 09:00:00',
                                            end: '2018-01-03 07:00:00',
                                            color: 'green' } }
@@ -46,13 +45,13 @@ class EventsTest < ActionDispatch::IntegrationTest
 
   test 'should update event' do
     visit('/')
-    create_event("09:00AM", "02:00PM", 'Green')
+    create_event('09:00AM', '02:00PM', 'Green')
     find('div', class: 'fc-title', text: 'test title').click
     fill_in('event_title', with: 'updated event')
-    fill_in('event_start', with: Date.today.strftime("%m/%d/%Y") + "\t03:30PM")
-    fill_in('event_end', with: Date.today.strftime("%m/%d/%Y") + "\t07:30PM")
+    fill_in('event_start', with: "#{Time.zone.today.strftime('%m/%d/%Y')}\t03:30PM")
+    fill_in('event_end', with: "#{Time.zone.today.strftime('%m/%d/%Y')}\t07:30PM")
     select('Midnight Blue', from: 'event_color')
-    click_button('Update Event')
+    click_on('Update Event')
     assert has_content?('updated event')
     assert has_content?('3:30 - 7:30')
     @updated_event = Event.find_by(title: 'updated event')
@@ -61,12 +60,12 @@ class EventsTest < ActionDispatch::IntegrationTest
 
   test 'should not update event where the end is before the start' do
     visit('/')
-    create_event("09:00AM", "02:00PM", 'Green')
+    create_event('09:00AM', '02:00PM', 'Green')
     find('div', class: 'fc-title', text: 'test title').click
     fill_in('event_title', with: 'updated event')
-    fill_in('event_start', with: Date.today.strftime("%m/%d/%Y") + "\t07:30PM")
-    fill_in('event_end', with: Date.today.strftime("%m/%d/%Y") + "\t03:30PM")
-    click_button('Update Event')
+    fill_in('event_start', with: "#{Time.zone.today.strftime('%m/%d/%Y')}\t07:30PM")
+    fill_in('event_end', with: "#{Time.zone.today.strftime('%m/%d/%Y')}\t03:30PM")
+    click_on('Update Event')
     assert_not has_content?('updated event')
     assert has_content?("End can't be before start")
   end
@@ -87,11 +86,11 @@ class EventsTest < ActionDispatch::IntegrationTest
 
   test 'should delete event' do
     visit('/')
-    create_event("09:00AM", "02:00PM", 'Green')
+    create_event('09:00AM', '02:00PM', 'Green')
     find('div', class: 'fc-title', text: 'test title').click
     assert_difference 'Event.count', -1 do
       accept_confirm do
-        click_link('Delete')
+        click_on('Delete')
         sleep 0.3
       end
       assert_not has_content?('test title')
