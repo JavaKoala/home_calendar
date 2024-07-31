@@ -7,8 +7,28 @@
       <script type="text/javascript">
         document.getElementById('event_start').value = eventStart;
         document.getElementById('event_end').value = eventEnd;
+
+        $("#collapseRecurringButton").click(function () {
+          $("#event_recurring_days").val('');
+        });
       </script>
+
+      <button
+        id="collapseRecurringButton"
+        class="btn btn-light"
+        type="button"
+        data-toggle="collapse"
+        data-target="#collapseRecurring"
+        aria-expanded="false"
+        aria-controls="collapseRecurring">
+        Recurring
+      </button>
+
+      <div class="collapse" id="collapseRecurring">
+        <%= f.input :recurring_days, as: :integer, html5: true %>
+      </div>
     <% end %>
+
     <%= f.input :color, as: :select, collection: [['Black','black'], 
                                                   ['Green','green'], 
                                                   ['Red','red'], 
@@ -21,7 +41,7 @@
   </div>
 
   <div class="form-actions">
-    <%= f.button :submit %>
+    <%= f.button :submit, class: 'btn btn-primary' %>
     <%= link_to 'Delete', 
                 event, 
                 method: :delete, 
