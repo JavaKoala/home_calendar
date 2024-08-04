@@ -3,6 +3,15 @@
     <%= f.input :title %>
     <%= f.input :start, as: :datetime, html5: true %>
     <%= f.input :end, as: :datetime, html5: true %>
+    <%= f.input :color, as: :select, collection: [['Black','black'], 
+                                                  ['Green','green'], 
+                                                  ['Red','red'], 
+                                                  ['Midnight Blue', 'midnightblue'],
+                                                  ['Indigo', 'indigo'],
+                                                  ['Dark Orange', 'darkorange'],
+                                                  ['Sienna', 'sienna'],
+                                                  ['Teal', 'teal']], 
+                        html5: true %>
     <% if @event.start.nil? and @event.end.nil? %>
       <script type="text/javascript">
         document.getElementById('event_start').value = eventStart;
@@ -13,31 +22,24 @@
         });
       </script>
 
-      <button
-        id="collapseRecurringButton"
-        class="btn btn-light"
-        type="button"
-        data-toggle="collapse"
-        data-target="#collapseRecurring"
-        aria-expanded="false"
-        aria-controls="collapseRecurring">
-        Recurring
-      </button>
+      <div>
+        <button
+          id="collapseRecurringButton"
+          class="btn btn-light"
+          type="button"
+          data-toggle="collapse"
+          data-target="#collapseRecurring"
+          aria-expanded="false"
+          aria-controls="collapseRecurring">
+          Recurring
+        </button>
+      </div>
 
       <div class="collapse" id="collapseRecurring">
         <%= f.input :recurring_days, as: :integer, html5: true %>
       </div>
+      &nbsp;
     <% end %>
-
-    <%= f.input :color, as: :select, collection: [['Black','black'], 
-                                                  ['Green','green'], 
-                                                  ['Red','red'], 
-                                                  ['Midnight Blue', 'midnightblue'],
-                                                  ['Indigo', 'indigo'],
-                                                  ['Dark Orange', 'darkorange'],
-                                                  ['Sienna', 'sienna'],
-                                                  ['Teal', 'teal']], 
-                        html5: true %>
   </div>
 
   <div class="form-actions">

@@ -14,7 +14,7 @@ class EventsController < ApplicationController
   def create
     @event = Event.new(event_params)
     if @event.valid?
-      @event.save
+      @recurring_events = RecurringService.create_events(@event)
     else
       redirect_to root_url
       flash[:danger] = @event.errors.full_messages[0]
@@ -39,6 +39,6 @@ class EventsController < ApplicationController
   end
 
   def event_params
-    params.require(:event).permit(:title, :start, :end, :color)
+    params.require(:event).permit(:title, :start, :end, :color, :recurring_days)
   end
 end
