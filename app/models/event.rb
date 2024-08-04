@@ -1,5 +1,5 @@
 class Event < ApplicationRecord
-  attr_accessor :recurring_days
+  attr_accessor :recurring_days, :apply_to_series
 
   validate :end_before_start, :more_than_24_hours
 

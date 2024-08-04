@@ -29,7 +29,13 @@ class EventsController < ApplicationController
   end
 
   def destroy
-    @event.destroy
+    @deleted_events = if params[:apply_to_series] == 'true' && @event.recurring_uuid.present?
+                        Event.where(recurring_uuid: @event.recurring_uuid).pluck(:id)
+                      else
+                        [@event.id]
+                      end
+
+    Event.delete(@deleted_events)
   end
 
   private
@@ -39,6 +45,6 @@ class EventsController < ApplicationController
   end
 
   def event_params
-    params.require(:event).permit(:title, :start, :end, :color, :recurring_days)
+    params.require(:event).permit(:title, :start, :end, :color, :recurring_days, :apply_to_series)
   end
 end

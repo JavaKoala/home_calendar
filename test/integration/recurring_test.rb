@@ -21,7 +21,38 @@ class RecurringTest < ActionDispatch::IntegrationTest
     visit('/')
     assert_difference 'Event.count', 3 do
       create_events('09:00AM', '02:00PM', 'Green', 2)
-      assert has_content?('test title')
+      assert_text('test title', count: 3)
     end
+  end
+
+  test 'delete multiple events' do
+    visit('/')
+    create_events('09:00AM', '02:00PM', 'Green', 2)
+    first('div', class: 'fc-title', text: 'test title').click
+
+    assert_difference 'Event.count', -3 do
+      accept_confirm do
+        find_by_id('event_apply_to_series').click
+        click_on('Delete')
+      end
+      sleep 0.3
+    end
+
+    assert_not has_content?('test title')
+  end
+
+  test 'delete single event in events' do
+    visit('/')
+    create_events('09:00AM', '02:00PM', 'Green', 2)
+    first('div', class: 'fc-title', text: 'test title').click
+
+    assert_difference 'Event.count', -1 do
+      accept_confirm do
+        click_on('Delete')
+      end
+      sleep 0.3
+    end
+
+    assert_text('test title', count: 2)
   end
 end
