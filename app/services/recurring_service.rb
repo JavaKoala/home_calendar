@@ -34,5 +34,18 @@ class RecurringService
 
       recurring_event
     end
+
+    def update_events(event, event_params)
+      if event_params[:apply_to_series] == '1' && event.recurring_uuid.present?
+        events = Event.where(recurring_uuid: event.recurring_uuid)
+        events.update_all(title: event_params[:title], color: event_params[:color])
+
+        events
+      else
+        event.update(event_params)
+
+        [event]
+      end
+    end
   end
 end

@@ -22,10 +22,11 @@ class EventsController < ApplicationController
   end
 
   def update
-    return if @event.update(event_params)
+    @events = RecurringService.update_events(@event, event_params)
+    return if @events.first.errors.empty?
 
     redirect_to root_url
-    flash[:danger] = @event.errors.full_messages[0] # rubocop:disable Rails/ActionControllerFlashBeforeRender
+    flash[:danger] = @events.first.errors.full_messages[0] # rubocop:disable Rails/ActionControllerFlashBeforeRender
   end
 
   def destroy

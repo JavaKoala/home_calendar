@@ -91,8 +91,8 @@ class EventsTest < ActionDispatch::IntegrationTest
     assert_difference 'Event.count', -1 do
       accept_confirm do
         click_on('Delete')
-        sleep 0.3
       end
+      sleep 0.3
       assert_not has_content?('test title')
     end
   end

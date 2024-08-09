@@ -10,3 +10,6 @@ Style/Documentation:
 
 AllCops:
     NewCops: enable
+
+Rails/SkipsModelValidations:
+  Enabled: false
