@@ -41,16 +41,6 @@
       &nbsp;
     <% elsif @event.recurring_uuid.present? %>
       <%= f.input :apply_to_series, as: :boolean %>
-      <script type="text/javascript">
-        $("#event_apply_to_series").click(function () {
-          $("#event_start").prop('disabled', $("#event_apply_to_series").is(':checked'));
-          $("#event_end").prop('disabled', $("#event_apply_to_series").is(':checked'));
-
-          const deleteHref = $("#event_delete").attr('href');
-          const updatedHref = deleteHref.split('=')[0] + '=' + $("#event_apply_to_series").is(':checked');
-          $("#event_delete").attr('href', updatedHref);
-        });
-      </script>
     <% end %>
   </div>
 
