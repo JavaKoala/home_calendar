@@ -41,7 +41,6 @@ group :development, :test do
   # Adds support for Capybara system testing and selenium driver
   gem 'capybara', '~> 3.40'
   gem 'selenium-webdriver'
-  gem 'simplecov', require: false, group: :test
   gem 'webdrivers', '~> 5.3'
 end
 
@@ -55,6 +54,10 @@ group :development do
   gem 'rubocop-rails', require: false
   gem 'spring'
   gem 'spring-watcher-listen', '~> 2.0.0'
+end
+
+group :test do
+  gem 'simplecov', require: false
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
