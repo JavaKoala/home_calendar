@@ -26,3 +26,6 @@ config/database.yml
 
 # Ignore production.rb
 config/deploy/production.rb
+
+# Ignore simplecov coverage reports
+/test/coverage/*
