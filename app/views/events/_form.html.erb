@@ -13,15 +13,6 @@
                                                   ['Teal', 'teal']], 
                         html5: true %>
     <% if @event.start.nil? and @event.end.nil? %>
-      <script type="text/javascript">
-        document.getElementById('event_start').value = eventStart;
-        document.getElementById('event_end').value = eventEnd;
-
-        $("#collapseRecurringButton").click(function () {
-          $("#event_recurring_days").val('');
-        });
-      </script>
-
       <div>
         <button
           id="collapseRecurringButton"
