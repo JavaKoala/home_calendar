@@ -3,12 +3,6 @@
     <%= f.input :title %>
     <%= f.input :start, as: :datetime, html5: true %>
     <%= f.input :end, as: :datetime, html5: true %>
-    <% if @event.start.nil? and @event.end.nil? %>
-      <script type="text/javascript">
-        document.getElementById('event_start').value = eventStart;
-        document.getElementById('event_end').value = eventEnd;
-      </script>
-    <% end %>
     <%= f.input :color, as: :select, collection: [['Black','black'], 
                                                   ['Green','green'], 
                                                   ['Red','red'], 
@@ -18,15 +12,37 @@
                                                   ['Sienna', 'sienna'],
                                                   ['Teal', 'teal']], 
                         html5: true %>
+    <% if @event.start.nil? and @event.end.nil? %>
+      <div>
+        <button
+          id="collapseRecurringButton"
+          class="btn btn-light"
+          type="button"
+          data-toggle="collapse"
+          data-target="#collapseRecurring"
+          aria-expanded="false"
+          aria-controls="collapseRecurring">
+          Recurring
+        </button>
+      </div>
+
+      <div class="collapse" id="collapseRecurring">
+        <%= f.input :recurring_days, as: :integer, html5: true %>
+      </div>
+      &nbsp;
+    <% elsif @event.recurring_uuid.present? %>
+      <%= f.input :apply_to_series, as: :boolean %>
+    <% end %>
   </div>
 
   <div class="form-actions">
-    <%= f.button :submit %>
-    <%= link_to 'Delete', 
-                event, 
-                method: :delete, 
-                class: 'btn btn-danger', 
-                data: { confirm: 'Are you sure?' }, 
+    <%= f.button :submit, class: 'btn btn-primary' %>
+    <%= link_to 'Delete',
+                event_path(apply_to_series: false),
+                id: 'event_delete',
+                method: :delete,
+                class: 'btn btn-danger',
+                data: { confirm: 'Are you sure?' },
                 remote: true unless @event.new_record? %>
   </div>
 <% end %>

@@ -1,3 +1,12 @@
 $('#flash').remove();
 $('#remote_container').html('<%= j render "edit" %>');
 $('#edit_event').modal('show');
+
+$("#event_apply_to_series").click(function () {
+  $("#event_start").prop('disabled', $("#event_apply_to_series").is(':checked'));
+  $("#event_end").prop('disabled', $("#event_apply_to_series").is(':checked'));
+
+  const deleteHref = $("#event_delete").attr('href');
+  const updatedHref = deleteHref.split('=')[0] + '=' + $("#event_apply_to_series").is(':checked');
+  $("#event_delete").attr('href', updatedHref);
+});

@@ -1,6 +1,8 @@
-$('.calendar').fullCalendar(
-  'renderEvent', 
-  $.parseJSON("<%=j render(@event, format: :json).html_safe %>"),
-  true
-);
+<% @recurring_events.each do |recurring_event| %>
+  $('.calendar').fullCalendar(
+    'renderEvent', 
+    $.parseJSON("<%=j render(recurring_event, format: :json).html_safe %>"),
+    true
+  );
+<% end %>
 $('.modal').modal('hide');
