@@ -6,7 +6,7 @@ class RecurringServiceTest < ActiveSupport::TestCase
       title: 'test',
       start: Time.zone.now,
       end: 2.hours.from_now,
-      recurring_days: 2
+      recurring_times: 2
     )
 
     recurring_events = RecurringService.create_events(event)
@@ -34,7 +34,7 @@ class RecurringServiceTest < ActiveSupport::TestCase
       title: 'test',
       start: Time.zone.now,
       end: 2.hours.from_now,
-      recurring_days: 2
+      recurring_times: 2
     )
     event_params = { title: 'updated title', color: 'Green', apply_to_series: '1' }
 

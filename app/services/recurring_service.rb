@@ -1,7 +1,7 @@
 class RecurringService
   class << self
     def create_events(event)
-      if event.recurring_days.present? && event.recurring_days.to_i.positive?
+      if event.recurring_times.present? && event.recurring_times.to_i.positive?
         create_recurring_events(event)
       else
         create_event(event)
@@ -16,7 +16,7 @@ class RecurringService
     def create_recurring_events(event)
       event.recurring_uuid = SecureRandom.uuid
 
-      events = (1..event.recurring_days.to_i).map do |day|
+      events = (1..event.recurring_times.to_i).map do |day|
         create_recurring_event(event, day)
       end
 

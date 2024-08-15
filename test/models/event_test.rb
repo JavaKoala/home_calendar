@@ -17,7 +17,7 @@ class EventTest < ActiveSupport::TestCase
     event = Event.new(
       start: Time.zone.now,
       end: 2.days.from_now,
-      recurring_days: 2
+      recurring_times: 2
     )
 
     assert_not event.valid?
@@ -27,7 +27,7 @@ class EventTest < ActiveSupport::TestCase
     event = Event.new(
       start: Time.zone.now,
       end: 2.hours.from_now,
-      recurring_days: 2
+      recurring_times: 2
     )
 
     assert event.valid?

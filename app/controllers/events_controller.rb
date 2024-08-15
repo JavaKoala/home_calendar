@@ -46,6 +46,6 @@ class EventsController < ApplicationController
   end
 
   def event_params
-    params.require(:event).permit(:title, :start, :end, :color, :recurring_days, :apply_to_series)
+    params.require(:event).permit(:title, :start, :end, :color, :recurring_times, :apply_to_series)
   end
 end

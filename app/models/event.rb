@@ -1,5 +1,5 @@
 class Event < ApplicationRecord
-  attr_accessor :recurring_days, :apply_to_series
+  attr_accessor :recurring_times, :apply_to_series
 
   validate :end_before_start, :more_than_24_hours
 
@@ -8,7 +8,7 @@ class Event < ApplicationRecord
   end
 
   def more_than_24_hours
-    return unless recurring_days.present? && (self.end - start) / 1.hour > 24
+    return unless recurring_times.present? && (self.end - start) / 1.hour > 24
 
     errors.add(:end, "can't be greater than 24 hours for recurring event")
   end

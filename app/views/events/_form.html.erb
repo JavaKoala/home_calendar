@@ -27,7 +27,7 @@
       </div>
 
       <div class="collapse" id="collapseRecurring">
-        <%= f.input :recurring_days, as: :integer, html5: true %>
+        <%= f.input :recurring_times, as: :integer, html5: true %>
       </div>
       &nbsp;
     <% elsif @event.recurring_uuid.present? %>

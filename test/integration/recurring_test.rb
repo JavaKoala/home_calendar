@@ -13,14 +13,14 @@ class RecurringTest < ActionDispatch::IntegrationTest
     "#{Time.zone.today.monday.strftime('%m/%d/%Y')}\t#{end_time}"
   end
 
-  def create_events(start_time, end_time, event_color, recurring_days)
+  def create_events(start_time, end_time, event_color, recurring_times)
     first('td', class: 'fc-widget-content').click
     fill_in('event_title', with: 'test title')
     fill_in('event_start', with: create_event_start(start_time))
     fill_in('event_end', with: create_event_end(end_time))
     select(event_color, from: 'event_color')
     click_on('Recurring')
-    fill_in('event_recurring_days', with: recurring_days.to_s)
+    fill_in('event_recurring_times', with: recurring_times.to_s)
     click_on('Create Event')
     sleep 0.3
   end
