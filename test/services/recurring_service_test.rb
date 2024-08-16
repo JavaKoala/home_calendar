@@ -16,6 +16,60 @@ class RecurringServiceTest < ActiveSupport::TestCase
     assert_not_nil recurring_events[0].recurring_uuid
   end
 
+  test 'should create weekly events' do
+    event_start = Time.zone.now
+    event_end = 2.hours.from_now
+
+    event = Event.new(
+      title: 'test',
+      start: event_start,
+      end: event_end,
+      recurring_times: 2,
+      recurring_schedule: 'weekly'
+    )
+
+    recurring_events = RecurringService.create_events(event)
+
+    assert_equal 3, recurring_events.size
+    assert_equal Event.order(start: :desc).first.start.to_i - 2.weeks, event_start.to_i
+  end
+
+  test 'should create monthly events' do
+    event_start = Time.zone.now
+    event_end = 2.hours.from_now
+
+    event = Event.new(
+      title: 'test',
+      start: event_start,
+      end: event_end,
+      recurring_times: 3,
+      recurring_schedule: 'monthly'
+    )
+
+    recurring_events = RecurringService.create_events(event)
+
+    assert_equal 4, recurring_events.size
+    assert_equal (Event.order(end: :desc).first.end - 3.months).to_i, event_end.to_i
+  end
+
+  test 'should create events every 2 weeks' do
+    event_start = Time.zone.now
+    event_end = 2.hours.from_now
+
+    event = Event.new(
+      title: 'test',
+      start: event_start,
+      end: event_end,
+      recurring_times: 4,
+      recurring_schedule: 'every 2 weeks'
+    )
+
+    recurring_events = RecurringService.create_events(event)
+
+    assert_equal 5, recurring_events.size
+    assert_equal (Event.order(start: :desc).first.start - 8.weeks).to_i, event_start.to_i
+  end
+
   test 'should not create recurring events when recurring days is not present' do
     event = Event.new(
       title: 'test',

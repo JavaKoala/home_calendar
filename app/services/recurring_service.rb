@@ -16,8 +16,8 @@ class RecurringService
     def create_recurring_events(event)
       event.recurring_uuid = SecureRandom.uuid
 
-      events = (1..event.recurring_times.to_i).map do |day|
-        create_recurring_event(event, day)
+      events = (1..event.recurring_times.to_i).map do |n_time|
+        create_recurring_event(event, n_time)
       end
 
       event.save
@@ -26,13 +26,28 @@ class RecurringService
       events
     end
 
-    def create_recurring_event(event, day)
+    def create_recurring_event(event, n_time)
+      n_schedule = recurring_schedule(event, n_time)
+
       recurring_event = event.deep_dup
-      recurring_event.start = event.start + day.days
-      recurring_event.end = event.end + day.days
+      recurring_event.start = event.start + n_schedule
+      recurring_event.end = event.end + n_schedule
       recurring_event.save
 
       recurring_event
+    end
+
+    def recurring_schedule(event, n_time)
+      case event.recurring_schedule
+      when 'weekly'
+        n_time.weeks
+      when 'monthly'
+        n_time.months
+      when 'every 2 weeks'
+        n_time * 2.weeks
+      else
+        n_time.days
+      end
     end
 
     def update_events(event, event_params)
