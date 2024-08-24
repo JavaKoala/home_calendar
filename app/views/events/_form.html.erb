@@ -27,7 +27,9 @@
       </div>
 
       <div class="collapse" id="collapseRecurring">
-        <%= f.input :recurring_days, as: :integer, html5: true %>
+        <%= f.input :recurring_schedule, as: :radio_buttons, collection: ['daily', 'weekly', 'monthly', 'every 2 weeks'] %>
+
+        <%= f.input :recurring_times, as: :integer, html5: true %>
       </div>
       &nbsp;
     <% elsif @event.recurring_uuid.present? %>
