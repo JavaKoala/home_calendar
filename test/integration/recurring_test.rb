@@ -13,7 +13,7 @@ class RecurringTest < ActionDispatch::IntegrationTest
     "#{Time.zone.today.monday.strftime('%m/%d/%Y')}\t#{end_time}"
   end
 
-  def create_events(start_time, end_time, event_color, recurring_times)
+  def create_events(start_time, end_time, event_color, recurring_times, recurring = nil)
     first('td', class: 'fc-widget-content').click
     fill_in('event_title', with: 'test title')
     fill_in('event_start', with: create_event_start(start_time))
@@ -21,6 +21,7 @@ class RecurringTest < ActionDispatch::IntegrationTest
     select(event_color, from: 'event_color')
     click_on('Recurring')
     fill_in('event_recurring_times', with: recurring_times.to_s)
+    choose(recurring) if recurring
     click_on('Create Event')
     sleep 0.3
   end
@@ -31,6 +32,36 @@ class RecurringTest < ActionDispatch::IntegrationTest
       create_events('09:00AM', '02:00PM', 'Green', 2)
       assert_text('test title', count: 3)
     end
+  end
+
+  test 'should create weekly events' do
+    visit('/')
+    assert_difference 'Event.count', 3 do
+      create_events('09:00AM', '02:00PM', 'Green', 2, 'weekly')
+      assert_text('test title', count: 1)
+    end
+
+    assert_equal (Time.zone.now.beginning_of_week + 2.weeks + 14.hours), Event.order(end: :desc).first.end
+  end
+
+  test 'should create monthly events' do
+    visit('/')
+    assert_difference 'Event.count', 3 do
+      create_events('09:00AM', '02:00PM', 'Green', 2, 'monthly')
+      assert_text('test title', count: 1)
+    end
+
+    assert_equal (Time.zone.now.beginning_of_week + 2.months + 14.hours), Event.order(end: :desc).first.end
+  end
+
+  test 'should create bi-weekly events' do
+    visit('/')
+    assert_difference 'Event.count', 3 do
+      create_events('09:00AM', '02:00PM', 'Green', 2, 'every 2 weeks')
+      assert_text('test title', count: 1)
+    end
+
+    assert_equal (Time.zone.now.beginning_of_week + 4.weeks + 14.hours), Event.order(end: :desc).first.end
   end
 
   test 'should update multiple events' do
