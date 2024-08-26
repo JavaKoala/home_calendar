@@ -17,7 +17,7 @@ class EventsController < ApplicationController
       @recurring_events = RecurringService.create_events(@event)
     else
       redirect_to root_url
-      flash[:danger] = @event.errors.full_messages[0]
+      flash[:danger] = @event.errors.full_messages[0] # rubocop:disable Rails/ActionControllerFlashBeforeRender
     end
   end
 
