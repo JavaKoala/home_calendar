@@ -13,3 +13,7 @@ AllCops:
 
 Rails/SkipsModelValidations:
   Enabled: false
+
+Metrics/ClassLength:
+  Exclude:
+    - "test/**/*"

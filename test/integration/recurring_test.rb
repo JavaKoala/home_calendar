@@ -6,11 +6,19 @@ class RecurringTest < ActionDispatch::IntegrationTest
   end
 
   def create_event_start(start_time)
-    "#{Time.zone.today.monday.strftime('%m/%d/%Y')}\t#{start_time}"
+    if Time.zone.now.sunday?
+      "#{Time.zone.today.strftime('%m/%d/%Y')}\t#{start_time}"
+    else
+      "#{Time.zone.today.monday.strftime('%m/%d/%Y')}\t#{start_time}"
+    end
   end
 
   def create_event_end(end_time)
-    "#{Time.zone.today.monday.strftime('%m/%d/%Y')}\t#{end_time}"
+    if Time.zone.now.sunday?
+      "#{Time.zone.today.strftime('%m/%d/%Y')}\t#{end_time}"
+    else
+      "#{Time.zone.today.monday.strftime('%m/%d/%Y')}\t#{end_time}"
+    end
   end
 
   def create_events(start_time, end_time, event_color, recurring_times, recurring = nil)
@@ -41,7 +49,11 @@ class RecurringTest < ActionDispatch::IntegrationTest
       assert_text('test title', count: 1)
     end
 
-    assert_equal (Time.zone.now.beginning_of_week + 2.weeks + 14.hours), Event.order(end: :desc).first.end
+    if Time.zone.now.sunday?
+      assert_equal (Time.zone.now.beginning_of_day + 2.weeks + 14.hours), Event.order(end: :desc).first.end
+    else
+      assert_equal (Time.zone.now.beginning_of_week + 2.weeks + 14.hours), Event.order(end: :desc).first.end
+    end
   end
 
   test 'should create monthly events' do
@@ -51,7 +63,11 @@ class RecurringTest < ActionDispatch::IntegrationTest
       assert_text('test title', count: 1)
     end
 
-    assert_equal (Time.zone.now.beginning_of_week + 2.months + 14.hours), Event.order(end: :desc).first.end
+    if Time.zone.now.sunday?
+      assert_equal (Time.zone.now.beginning_of_day + 2.months + 14.hours), Event.order(end: :desc).first.end
+    else
+      assert_equal (Time.zone.now.beginning_of_week + 2.weeks + 14.hours), Event.order(end: :desc).first.end
+    end
   end
 
   test 'should create bi-weekly events' do
@@ -61,7 +77,11 @@ class RecurringTest < ActionDispatch::IntegrationTest
       assert_text('test title', count: 1)
     end
 
-    assert_equal (Time.zone.now.beginning_of_week + 4.weeks + 14.hours), Event.order(end: :desc).first.end
+    if Time.zone.now.sunday?
+      assert_equal (Time.zone.now.beginning_of_day + 4.weeks + 14.hours), Event.order(end: :desc).first.end
+    else
+      assert_equal (Time.zone.now.beginning_of_week + 4.weeks + 14.hours), Event.order(end: :desc).first.end
+    end
   end
 
   test 'should update multiple events' do
