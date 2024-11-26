@@ -2,9 +2,13 @@ module Api
   module V1
     class EventsController < ApplicationController
       def index
-        @events = Event.where(start: params[:start]..params[:end])
+        if params[:start].present? && params[:end].present?
+          @events = Event.where(start: params[:start]..params[:end])
 
-        render json: @events
+          render json: @events
+        else
+          render status: :bad_request, plain: 'start and end parameters are required'
+        end
       end
 
       def show

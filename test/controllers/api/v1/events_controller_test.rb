@@ -9,6 +9,18 @@ module Api
         assert_equal response.parsed_body.last['id'], Event.last.id
       end
 
+      test 'should return bad request if start is not present' do
+        get api_v1_events_url, params: { end: Event.last.end }
+        assert_response :bad_request
+        assert_equal response.body, 'start and end parameters are required'
+      end
+
+      test 'should return bad request if end is not present' do
+        get api_v1_events_url, params: { start: Event.last.start }
+        assert_response :bad_request
+        assert_equal response.body, 'start and end parameters are required'
+      end
+
       test 'should get event' do
         get api_v1_event_url(Event.first.id)
         assert_response :success
