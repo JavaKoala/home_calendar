@@ -2,7 +2,7 @@ module Api
   module V1
     class EventsController < ApplicationController
       protect_from_forgery with: :null_session
-      before_action :set_event, only: %i[show update]
+      before_action :set_event, only: %i[show update destroy]
 
       def index
         if params[:start].present? && params[:end].present?
@@ -40,6 +40,20 @@ module Api
           else
             render status: :bad_request, json: @events.first.errors.full_messages
           end
+        else
+          render status: :not_found, json: {}
+        end
+      end
+
+      def destroy
+        if @event.present?
+          @deleted_events = if params[:apply_to_series] == 'true' && @event.recurring_uuid.present?
+                              Event.where(recurring_uuid: @event.recurring_uuid).pluck(:id)
+                            else
+                              [@event.id]
+                            end
+
+          Event.delete(@deleted_events)
         else
           render status: :not_found, json: {}
         end

@@ -118,6 +118,20 @@ module Api
         assert_response :not_found
         assert_equal '{}', response.body
       end
+
+      test 'should delete event' do
+        event = Event.first
+        assert_difference 'Event.count', -1 do
+          delete api_v1_event_url(event.id)
+        end
+        assert_response :success
+      end
+
+      test 'should return not found when deleting nonexistant event' do
+        delete api_v1_event_url(Event.last.id + 1)
+        assert_response :not_found
+        assert_equal '{}', response.body
+      end
     end
   end
 end
