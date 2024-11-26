@@ -4,6 +4,12 @@ module Api
   module V1
     class EventsControllerTest < ActionDispatch::IntegrationTest
       test 'should get index' do
+        get api_v1_events_url, params: { start: Event.last.start, end: Event.last.end }
+        assert_response :success
+        assert_equal response.parsed_body.last['id'], Event.last.id
+      end
+
+      test 'should get event' do
         get api_v1_event_url(Event.first.id)
         assert_response :success
       end
