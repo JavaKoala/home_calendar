@@ -40,6 +40,36 @@ module Api
         assert_response :not_found
         assert_equal '{}', response.body
       end
+
+      test 'should create event' do
+        assert_difference 'Event.count', 1 do
+          post api_v1_events_url, params: {
+            event: {
+              title: 'test title',
+              start: Time.zone.now,
+              end: 1.hour.from_now,
+              color: 'Green'
+            }
+          }
+        end
+
+        assert_response :created
+      end
+
+      test 'should not create event if it does not pass validation' do
+        assert_no_difference 'Event.count' do
+          post api_v1_events_url, params: {
+            event: {
+              title: 'test title',
+              start: 1.hour.from_now,
+              end: Time.zone.now,
+              color: 'Green'
+            }
+          }
+        end
+
+        assert_response :bad_request
+      end
     end
   end
 end
