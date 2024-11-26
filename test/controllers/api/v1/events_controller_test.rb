@@ -54,6 +54,8 @@ module Api
         end
 
         assert_response :created
+        assert_equal 'test title', response.parsed_body.first['title']
+        assert_equal 'Green', response.parsed_body.first['color']
       end
 
       test 'should not create event if it does not pass validation' do
@@ -69,6 +71,7 @@ module Api
         end
 
         assert_response :bad_request
+        assert_equal "End can't be before start", response.parsed_body.first
       end
     end
   end
