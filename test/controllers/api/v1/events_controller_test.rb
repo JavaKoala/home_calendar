@@ -73,6 +73,51 @@ module Api
         assert_response :bad_request
         assert_equal "End can't be before start", response.parsed_body.first
       end
+
+      test 'should update event' do
+        event = Event.first
+        patch api_v1_event_url(event.id), params: {
+          event: {
+            title: 'updated title',
+            start: event.start,
+            end: event.end,
+            color: 'Green'
+          }
+        }
+
+        assert_response :success
+        assert_equal 'updated title', response.parsed_body.first['title']
+        assert_equal 'Green', response.parsed_body.first['color']
+      end
+
+      test 'should not update invalid event' do
+        event = Event.first
+        patch api_v1_event_url(event.id), params: {
+          event: {
+            title: 'updated title',
+            start: event.start,
+            end: event.start - 1.hour,
+            color: 'Green'
+          }
+        }
+
+        assert_response :bad_request
+        assert_equal "End can't be before start", response.parsed_body.first
+      end
+
+      test 'should return not found for nonexistant event' do
+        patch api_v1_event_url(Event.last.id + 1), params: {
+          event: {
+            title: 'updated title',
+            start: Time.zone.now,
+            end: 1.hour.from_now,
+            color: 'Green'
+          }
+        }
+
+        assert_response :not_found
+        assert_equal '{}', response.body
+      end
     end
   end
 end
