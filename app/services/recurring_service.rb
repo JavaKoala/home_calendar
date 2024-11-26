@@ -62,5 +62,17 @@ class RecurringService
         [event]
       end
     end
+
+    def delete_events(event, apply_to_series)
+      deleted_events = if apply_to_series == 'true' && event.recurring_uuid.present?
+                         Event.where(recurring_uuid: event.recurring_uuid).pluck(:id)
+                       else
+                         [event.id]
+                       end
+
+      Event.delete(deleted_events)
+
+      deleted_events
+    end
   end
 end

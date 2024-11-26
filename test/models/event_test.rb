@@ -1,6 +1,20 @@
 require 'test_helper'
 
 class EventTest < ActiveSupport::TestCase
+  test 'should validate presence of start' do
+    event = Event.new
+
+    assert_not event.valid?
+    assert_equal ["can't be blank"], event.errors[:start]
+  end
+
+  test 'should validate presence of end' do
+    event = Event.new
+
+    assert_not event.valid?
+    assert_equal ["can't be blank"], event.errors[:end]
+  end
+
   test 'should not be valid when end is before start' do
     event = Event.new(start: 2.hours.from_now, end: Time.zone.now)
 

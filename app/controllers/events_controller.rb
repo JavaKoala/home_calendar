@@ -30,13 +30,7 @@ class EventsController < ApplicationController
   end
 
   def destroy
-    @deleted_events = if params[:apply_to_series] == 'true' && @event.recurring_uuid.present?
-                        Event.where(recurring_uuid: @event.recurring_uuid).pluck(:id)
-                      else
-                        [@event.id]
-                      end
-
-    Event.delete(@deleted_events)
+    @deleted_events = RecurringService.delete_events(@event, params[:apply_to_series])
   end
 
   private
