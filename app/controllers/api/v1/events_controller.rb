@@ -47,13 +47,7 @@ module Api
 
       def destroy
         if @event.present?
-          @deleted_events = if params[:apply_to_series] == 'true' && @event.recurring_uuid.present?
-                              Event.where(recurring_uuid: @event.recurring_uuid).pluck(:id)
-                            else
-                              [@event.id]
-                            end
-
-          Event.delete(@deleted_events)
+          RecurringService.delete_events(@event, params[:apply_to_series])
         else
           render status: :not_found, json: {}
         end
