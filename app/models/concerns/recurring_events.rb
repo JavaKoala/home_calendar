@@ -1,5 +1,7 @@
-class RecurringService
-  class << self
+module RecurringEvents
+  extend ActiveSupport::Concern
+
+  module ClassMethods
     def create_events(event)
       if event.recurring_times.present? && event.recurring_times.to_i.positive?
         create_recurring_events(event)
@@ -7,6 +9,33 @@ class RecurringService
         create_event(event)
       end
     end
+
+    def update_events(event, event_params)
+      if event_params[:apply_to_series] == '1' && event.recurring_uuid.present?
+        events = Event.where(recurring_uuid: event.recurring_uuid)
+        events.update_all(title: event_params[:title], color: event_params[:color])
+
+        events
+      else
+        event.update(event_params)
+
+        [event]
+      end
+    end
+
+    def delete_events(event, apply_to_series)
+      deleted_events = if apply_to_series == 'true' && event.recurring_uuid.present?
+                         Event.where(recurring_uuid: event.recurring_uuid).pluck(:id)
+                       else
+                         [event.id]
+                       end
+
+      Event.delete(deleted_events)
+
+      deleted_events
+    end
+
+    private
 
     def create_event(event)
       event.save
@@ -48,31 +77,6 @@ class RecurringService
       else
         n_time.days
       end
-    end
-
-    def update_events(event, event_params)
-      if event_params[:apply_to_series] == '1' && event.recurring_uuid.present?
-        events = Event.where(recurring_uuid: event.recurring_uuid)
-        events.update_all(title: event_params[:title], color: event_params[:color])
-
-        events
-      else
-        event.update(event_params)
-
-        [event]
-      end
-    end
-
-    def delete_events(event, apply_to_series)
-      deleted_events = if apply_to_series == 'true' && event.recurring_uuid.present?
-                         Event.where(recurring_uuid: event.recurring_uuid).pluck(:id)
-                       else
-                         [event.id]
-                       end
-
-      Event.delete(deleted_events)
-
-      deleted_events
     end
   end
 end
