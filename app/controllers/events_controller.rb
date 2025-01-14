@@ -14,7 +14,7 @@ class EventsController < ApplicationController
   def create
     @event = Event.new(event_params)
     if @event.valid?
-      @recurring_events = RecurringService.create_events(@event)
+      @recurring_events = Event.create_events(@event)
     else
       redirect_to root_url
       flash[:danger] = @event.errors.full_messages[0]
@@ -22,7 +22,7 @@ class EventsController < ApplicationController
   end
 
   def update
-    @events = RecurringService.update_events(@event, event_params)
+    @events = Event.update_events(@event, event_params)
     return if @events.first.errors.empty?
 
     redirect_to root_url
@@ -30,7 +30,7 @@ class EventsController < ApplicationController
   end
 
   def destroy
-    @deleted_events = RecurringService.delete_events(@event, params[:apply_to_series])
+    @deleted_events = Event.delete_events(@event, params[:apply_to_series])
   end
 
   private

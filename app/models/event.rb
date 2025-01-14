@@ -1,4 +1,5 @@
 class Event < ApplicationRecord
+  include RecurringEvents
   attr_accessor :recurring_times, :recurring_schedule, :apply_to_series
 
   validates :start, :end, presence: true
