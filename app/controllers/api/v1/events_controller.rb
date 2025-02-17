@@ -60,8 +60,8 @@ module Api
       end
 
       def event_params
-        params.require(:event).permit(:title, :start, :end, :color,
-                                      :recurring_times, :apply_to_series, :recurring_schedule)
+        params.expect(event: %i[title start end color
+                                recurring_times apply_to_series recurring_schedule])
       end
     end
   end
