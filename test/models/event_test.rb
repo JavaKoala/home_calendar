@@ -125,6 +125,24 @@ class EventTest < ActiveSupport::TestCase
     assert_equal (Event.order(start: :desc).first.start - 8.weeks).to_i, event_start.to_i
   end
 
+  test 'should create events every other day' do
+    event_start = Time.zone.now
+    event_end = 2.hours.from_now
+
+    event = Event.new(
+      title: 'test',
+      start: event_start,
+      end: event_end,
+      recurring_times: 4,
+      recurring_schedule: 'every other day'
+    )
+
+    recurring_events = Event.create_events(event)
+
+    assert_equal 5, recurring_events.size
+    assert_equal (Event.order(start: :desc).first.start - 8.days).to_i, event_start.to_i
+  end
+
   test 'should not create recurring events when recurring days is not present' do
     event = Event.new(
       title: 'test',

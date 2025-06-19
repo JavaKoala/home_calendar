@@ -66,7 +66,7 @@ module RecurringEvents
       recurring_event
     end
 
-    def recurring_schedule(event, n_time)
+    def recurring_schedule(event, n_time) # rubocop:disable Metrics/MethodLength
       case event.recurring_schedule
       when 'weekly'
         n_time.weeks
@@ -74,6 +74,8 @@ module RecurringEvents
         n_time.months
       when 'every 2 weeks'
         n_time * 2.weeks
+      when 'every other day'
+        n_time * 2.days
       else
         n_time.days
       end
