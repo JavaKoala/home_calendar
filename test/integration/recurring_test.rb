@@ -84,6 +84,20 @@ class RecurringTest < ActionDispatch::IntegrationTest
     end
   end
 
+  test 'should create every other day events' do
+    visit('/')
+    assert_difference 'Event.count', 3 do
+      create_events('09:00AM', '02:00PM', 'Green', 2, 'every other day')
+      assert_text('test title', count: 3)
+    end
+
+    if Time.zone.now.sunday?
+      assert_equal (Time.zone.now.beginning_of_day - 4.days + 14.hours), Event.order(end: :desc).first.end
+    else
+      assert_equal (Time.zone.now.beginning_of_week + 4.days + 14.hours), Event.order(end: :desc).first.end
+    end
+  end
+
   test 'should update multiple events' do
     visit('/')
     create_events('09:00AM', '02:00PM', 'Green', 2)

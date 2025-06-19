@@ -74,6 +74,8 @@ module RecurringEvents
         n_time.months
       when 'every 2 weeks'
         n_time * 2.weeks
+      when 'every other day'
+        n_time * 2.days
       else
         n_time.days
       end
