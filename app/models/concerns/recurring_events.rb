@@ -67,18 +67,13 @@ module RecurringEvents
     end
 
     def recurring_schedule(event, n_time)
-      case event.recurring_schedule
-      when 'weekly'
-        n_time.weeks
-      when 'monthly'
-        n_time.months
-      when 'every 2 weeks'
-        n_time * 2.weeks
-      when 'every other day'
-        n_time * 2.days
-      else
-        n_time.days
-      end
+      schedule = {
+        'weekly' => n_time.weeks,
+        'monthly' => n_time.months,
+        'every 2 weeks' => n_time * 2.weeks,
+        'every other day' => n_time * 2.days
+      }
+      schedule.fetch(event.recurring_schedule, n_time.days)
     end
   end
 end
