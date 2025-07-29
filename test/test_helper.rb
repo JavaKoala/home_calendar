@@ -13,6 +13,7 @@ module ActiveSupport
   class TestCase
     include Capybara::DSL
     include Capybara::Minitest::Assertions
+
     Capybara.default_driver = :selenium_chrome_headless
     # Setup all fixtures in test/fixtures/*.yml for all tests in alphabetical order.
     fixtures :all
