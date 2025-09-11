@@ -33,6 +33,9 @@ gem 'fullcalendar-rails', '~> 3.9'
 # Use momentjs for the JavaScript date formating
 gem 'momentjs-rails', '~> 2.29'
 
+# Use rack-cors for CORS
+gem 'rack-cors', '~> 3.0'
+
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platforms: %i[mri mingw x64_mingw]
