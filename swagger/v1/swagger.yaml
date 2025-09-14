@@ -224,7 +224,11 @@ components:
             recurring_times:
               type: integer
             apply_to_series:
-              type: boolean
+              type: string
+              enum:
+                - "0"
+                - "1"
+                - null
             recurring_schedule:
               type: string
               enum: 
