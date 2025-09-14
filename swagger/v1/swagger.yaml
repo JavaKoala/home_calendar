@@ -2,7 +2,7 @@
 openapi: 3.0.1
 info:
   title: Home Calendar API
-  version: v1
+  version: 1.0.0
   description: |
     API for managing calendar events, including recurring series.
 servers:
@@ -211,12 +211,29 @@ components:
           format: date-time
         color:
           type: string
+          enum:
+            - black
+            - green
+            - red
+            - midnightblue
+            - indigo
+            - darkorange
+            - sienna
+            - teal
+            - null
         recurring_times:
           type: integer
         apply_to_series:
           type: boolean
         recurring_schedule:
           type: string
+          enum: 
+            - daily
+            - weekly
+            - monthly
+            - every 2 weeks
+            - every other day
+            - null
       required:
         - title
         - start
