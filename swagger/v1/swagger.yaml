@@ -1,0 +1,77 @@
+---
+openapi: 3.0.1
+info:
+  title: API V1
+  version: v1
+paths:
+  "/api/v1/events":
+    get:
+      summary: list items
+      responses:
+        '200':
+          description: successful
+    post:
+      summary: create item
+      parameters: []
+      responses:
+        '201':
+          description: created
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                item_id:
+                  type: string
+                position:
+                  type: integer
+              required:
+              - item_id
+        required: true
+  "/api/v1/events/{id}":
+    parameters:
+    - name: id
+      in: path
+      description: id
+      required: true
+      schema:
+        type: string
+    get:
+      summary: show item
+      responses:
+        '200':
+          description: successful
+    patch:
+      summary: update item
+      parameters: []
+      responses:
+        '200':
+          description: successful
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                item_id:
+                  type: string
+                position:
+                  type: integer
+              required:
+              - item_id
+        required: true
+    delete:
+      summary: delete item
+      responses:
+        '204':
+          description: no content
+servers:
+- url: "{protocol}://{host}:{port}"
+  variables:
+    protocol:
+      default: http
+    host:
+      default: localhost
+    port:
+      default: '3000'
