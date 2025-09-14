@@ -185,17 +185,14 @@ components:
         end:
           type: string
           format: date-time
-        color:
+        created_at:
           type: string
-        recurring_times:
-          type: integer
-        apply_to_series:
-          type: boolean
-        recurring_schedule:
+        updated_at:
+          type: string
+        recurring_uuid:
           type: string
       required:
         - id
-        - title
         - start
         - end
     EventInput:
