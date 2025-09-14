@@ -92,7 +92,7 @@ class RecurringTest < ActionDispatch::IntegrationTest
     end
 
     if Time.zone.now.sunday?
-      assert_equal (Time.zone.now.beginning_of_day - 4.days + 14.hours), Event.order(end: :desc).first.end
+      assert_equal (Time.zone.now.beginning_of_day + 4.days + 14.hours), Event.order(end: :desc).first.end
     else
       assert_equal (Time.zone.now.beginning_of_week + 4.days + 14.hours), Event.order(end: :desc).first.end
     end
