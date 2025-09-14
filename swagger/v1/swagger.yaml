@@ -162,12 +162,6 @@ paths:
       responses:
         '204':
           description: Event(s) deleted
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/Event'
         '404':
           description: Event not found
           content:
