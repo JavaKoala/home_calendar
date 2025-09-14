@@ -201,40 +201,43 @@ components:
     EventInput:
       type: object
       properties:
-        title:
-          type: string
-        start:
-          type: string
-          format: date-time
-        end:
-          type: string
-          format: date-time
-        color:
-          type: string
-          enum:
-            - black
-            - green
-            - red
-            - midnightblue
-            - indigo
-            - darkorange
-            - sienna
-            - teal
-            - null
-        recurring_times:
-          type: integer
-        apply_to_series:
-          type: boolean
-        recurring_schedule:
-          type: string
-          enum: 
-            - daily
-            - weekly
-            - monthly
-            - every 2 weeks
-            - every other day
-            - null
-      required:
-        - title
-        - start
-        - end
+        event:
+          type: object
+          properties:
+            title:
+              type: string
+            start:
+              type: string
+              format: date-time
+            end:
+              type: string
+              format: date-time
+            color:
+              type: string
+              enum:
+                - black
+                - green
+                - red
+                - midnightblue
+                - indigo
+                - darkorange
+                - sienna
+                - teal
+                - null
+            recurring_times:
+              type: integer
+            apply_to_series:
+              type: boolean
+            recurring_schedule:
+              type: string
+              enum: 
+                - daily
+                - weekly
+                - monthly
+                - every 2 weeks
+                - every other day
+                - null
+          required:
+            - title
+            - start
+            - end
