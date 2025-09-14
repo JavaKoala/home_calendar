@@ -188,7 +188,7 @@ components:
         color:
           type: string
           enum:
-            - null
+            - ""
             - black
             - green
             - red
@@ -205,6 +205,7 @@ components:
           format: date-time
         recurring_uuid:
           type: string
+          nullable: true
       required:
         - id
         - start
@@ -226,7 +227,7 @@ components:
             color:
               type: string
               enum:
-                - null
+                - ""
                 - black
                 - green
                 - red
@@ -239,12 +240,14 @@ components:
               type: integer
             apply_to_series:
               type: string
+              nullable: true
               enum:
                 - "0"
                 - "1"
                 - null
             recurring_schedule:
               type: string
+              nullable: true
               enum:
                 - null
                 - daily
