@@ -185,6 +185,18 @@ components:
         end:
           type: string
           format: date-time
+        color:
+          type: string
+          enum:
+            - null
+            - black
+            - green
+            - red
+            - midnightblue
+            - indigo
+            - darkorange
+            - sienna
+            - teal
         created_at:
           type: string
         updated_at:
@@ -212,6 +224,7 @@ components:
             color:
               type: string
               enum:
+                - null
                 - black
                 - green
                 - red
@@ -220,7 +233,6 @@ components:
                 - darkorange
                 - sienna
                 - teal
-                - null
             recurring_times:
               type: integer
             apply_to_series:
@@ -231,7 +243,7 @@ components:
                 - null
             recurring_schedule:
               type: string
-              enum: 
+              enum:
                 - daily
                 - weekly
                 - monthly
@@ -239,6 +251,5 @@ components:
                 - every other day
                 - null
           required:
-            - title
             - start
             - end
