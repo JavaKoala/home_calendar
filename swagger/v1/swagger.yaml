@@ -246,12 +246,12 @@ components:
             recurring_schedule:
               type: string
               enum:
+                - null
                 - daily
                 - weekly
                 - monthly
                 - every 2 weeks
                 - every other day
-                - null
           required:
             - start
             - end
