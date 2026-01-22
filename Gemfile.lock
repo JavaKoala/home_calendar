@@ -169,6 +169,7 @@ GEM
       racc (~> 1.4)
     nokogiri (1.18.9-x86_64-linux-gnu)
       racc (~> 1.4)
+    openssl (4.0.0)
     parallel (1.27.0)
     parser (3.3.9.0)
       ast (~> 2.4.1)
@@ -354,6 +355,7 @@ DEPENDENCIES
   listen (~> 3.9)
   momentjs-rails (~> 2.29)
   mysql2 (~> 0.5.6)
+  openssl
   puma (~> 6.5)
   rack-cors (~> 3.0)
   rails (~> 8.0)
