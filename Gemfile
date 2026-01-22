@@ -40,6 +40,9 @@ gem 'rack-cors', '~> 3.0'
 gem 'rswag-api', '~> 2.16'
 gem 'rswag-ui', '~> 2.16'
 
+# Include openssl
+gem 'openssl'
+
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platforms: %i[mri mingw x64_mingw]
