@@ -38,7 +38,6 @@ RUN SECRET_KEY_BASE_DUMMY=1 ./bin/rails assets:precompile
 FROM base
 
 # Install packages needed for deployment
-RUN rm -rf /var/lib/apt/lists/*
 RUN apt-get update -qq && \
     apt-get install --no-install-recommends -y curl default-libmysqlclient-dev nodejs && \
     rm -rf /var/lib/apt/lists /var/cache/apt/archives
