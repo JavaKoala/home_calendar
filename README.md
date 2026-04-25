@@ -1,10 +1,8 @@
 # README
 
-This is a calendar application based on Drifting Ruby's calendar application ( https://www.driftingruby.com/episodes/fullcalendar-events-and-scheduling )
-It uses Ruby on Rails with MySQL, FullCalendar ( https://fullcalendar.io ), and moment.js ( https://momentjs.com )
-The goal of this project was to learn about FullCalendar and make something mobile friendly.
-To that end this application differs from Drifting Ruby's in that it uses HTML5 datetime pickers in the event forms.
-The FullCalendar configuration is also more mobile friendly.
+This is the backend API for the home calendar React application https://github.com/JavaKoala/home-calendar-react
+
+For the bundled frontend application see version 1
 
 ## OSX Development Setup
 
