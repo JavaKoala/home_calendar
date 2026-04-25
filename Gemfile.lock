@@ -106,7 +106,6 @@ GEM
     drb (2.2.3)
     erb (6.0.4)
     erubi (1.13.1)
-    execjs (2.10.1)
     ffi (1.17.4-aarch64-linux-gnu)
     ffi (1.17.4-arm64-darwin)
     ffi (1.17.4-x86_64-linux-gnu)
@@ -303,13 +302,8 @@ GEM
     tilt (2.7.0)
     timeout (0.6.1)
     tsort (0.2.0)
-    turbolinks (5.2.1)
-      turbolinks-source (~> 5.2)
-    turbolinks-source (5.2.0)
     tzinfo (2.0.6)
       concurrent-ruby (~> 1.0)
-    uglifier (4.2.1)
-      execjs (>= 0.3.0, < 3)
     unicode-display_width (3.2.0)
       unicode-emoji (~> 4.1)
     unicode-emoji (4.2.0)
@@ -359,9 +353,7 @@ DEPENDENCIES
   simplecov
   spring
   spring-watcher-listen (~> 2.1)
-  turbolinks (~> 5)
   tzinfo-data
-  uglifier (~> 4.2)
   web-console (~> 4.2)
   webdrivers (~> 5.3)
 
