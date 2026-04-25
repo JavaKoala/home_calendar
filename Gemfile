@@ -21,17 +21,6 @@ gem 'jbuilder', '~> 2.13'
 # gem 'redis', '~> 3.0'
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
-# Use jquery
-gem 'jquery-rails', '~> 4.6'
-# Bootstrap for styling
-gem 'bootstrap-sass', '~> 3.4'
-# Forms Using simple form
-gem 'simple_form', '~> 5.3'
-
-# Use fullcalendar for the calendar
-gem 'fullcalendar-rails', '~> 3.9'
-# Use momentjs for the JavaScript date formating
-gem 'momentjs-rails', '~> 2.29'
 
 # Use rack-cors for CORS
 gem 'rack-cors', '~> 3.0'
