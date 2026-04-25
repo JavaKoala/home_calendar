@@ -55,3 +55,9 @@ docker exec home_calendar bundle exec rails db:create
 docker exec home_calendar bundle exec rails db:migrate
 ```
 4. Go to http://localhost:3000 in a web browser to see the application
+
+## Run Continuous Integration
+
+```
+bin/ci
+```
