@@ -6,8 +6,6 @@ end
 
 require File.expand_path('../config/environment', __dir__)
 require 'rails/test_help'
-require 'capybara/rails'
-require 'capybara/minitest'
 
 module ActiveSupport
   class TestCase
