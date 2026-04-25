@@ -2,7 +2,7 @@
 
 This is the backend API for the home calendar React application [home-calendar-react](https://github.com/JavaKoala/home-calendar-react).
 
-For the bundled frontend application see version 1
+For the bundled frontend application, see version 1.
 
 ## OSX Development Setup
 
