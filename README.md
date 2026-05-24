@@ -38,7 +38,7 @@ git clone https://github.com/JavaKoala/home_calendar.git
 ## Docker Build and Run
 
 1. Build image
-`docker buildx build --tag home_calendar github.com/JavaKoala/home_calendar`
+`docker buildx build --tag home_calendar https://github.com/JavaKoala/home_calendar.git`
 2. Run image
 ```
 docker run -it --rm --name home_calendar -p 3000:3000 \
