@@ -14,7 +14,7 @@ pipeline {
                 sh """#!/bin/bash
                   export HOME="/var/snap/jenkins/current"
                   source /etc/profile
-                  rvm use 4.0.3
+                  rvm use 4.0.5
                   bundle install
                   cp config/database.yml.sample config/database.yml
                   sed -i 's/password:/password: password/' config/database.yml
