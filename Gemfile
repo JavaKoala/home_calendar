@@ -5,7 +5,7 @@ gem 'rails', '~> 8.1'
 # Use mysql as the database for Active Record
 gem 'mysql2', '~> 0.5.6'
 # Use Puma as the app server
-gem 'puma', '~> 6.5'
+gem 'puma', '~> 8.0'
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 6.0'
 # See https://github.com/rails/execjs#readme for more supported runtimes
