@@ -15,11 +15,7 @@ module Api
       end
 
       def show
-        if @event.present?
-          render json: @event
-        else
-          render status: :not_found, json: {}
-        end
+        render json: @event
       end
 
       def create
@@ -33,30 +29,24 @@ module Api
       end
 
       def update
-        if @event.present?
-          @events = Event.update_events(@event, event_params)
-          if @events.first.errors.empty?
-            render status: :ok, json: @events
-          else
-            render status: :bad_request, json: @events.first.errors.full_messages
-          end
+        @events = Event.update_events(@event, event_params)
+        if @events.first.errors.empty?
+          render status: :ok, json: @events
         else
-          render status: :not_found, json: {}
+          render status: :bad_request, json: @events.first.errors.full_messages
         end
       end
 
       def destroy
-        if @event.present?
-          Event.delete_events(@event, params[:apply_to_series])
-        else
-          render status: :not_found, json: {}
-        end
+        Event.delete_events(@event, params[:apply_to_series])
       end
 
       private
 
       def set_event
         @event = Event.find_by(id: params[:id])
+
+        render status: :not_found, json: {} if @event.blank?
       end
 
       def event_params
