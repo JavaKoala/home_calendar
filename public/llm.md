@@ -9,7 +9,7 @@ API for managing calendar events, including recurring series.
 
 ## Endpoints
 
-### `GET /api/v1/events` — List events in a date range
+### `GET /api/v1/events` - List events in a date range
 
 **Query Parameters:**
 
@@ -20,23 +20,23 @@ API for managing calendar events, including recurring series.
 
 **Responses:**
 
-- `200` — Array of `Event` objects
-- `400` — Missing or invalid parameters (plain text)
+- `200` - Array of `Event` objects
+- `400` - Missing or invalid parameters (plain text)
 
 ---
 
-### `POST /api/v1/events` — Create a new event (or series)
+### `POST /api/v1/events` - Create a new event (or series)
 
 **Request Body:** `EventInput` (JSON)
 
 **Responses:**
 
-- `201` — Array of created `Event` objects
-- `400` — Array of validation error strings
+- `201` - Array of created `Event` objects
+- `400` - Array of validation error strings
 
 ---
 
-### `GET /api/v1/events/{id}` — Retrieve a single event
+### `GET /api/v1/events/{id}` - Retrieve a single event
 
 **Path Parameters:**
 
@@ -46,12 +46,12 @@ API for managing calendar events, including recurring series.
 
 **Responses:**
 
-- `200` — `Event` object
-- `404` — Empty object
+- `200` - `Event` object
+- `404` - Empty object
 
 ---
 
-### `PATCH /api/v1/events/{id}` — Update an event (or series)
+### `PATCH /api/v1/events/{id}` - Update an event (or series)
 
 **Path Parameters:**
 
@@ -63,13 +63,13 @@ API for managing calendar events, including recurring series.
 
 **Responses:**
 
-- `200` — Array of updated `Event` objects
-- `400` — Array of validation error strings
-- `404` — Empty object
+- `200` - Array of updated `Event` objects
+- `400` - Array of validation error strings
+- `404` - Empty object
 
 ---
 
-### `DELETE /api/v1/events/{id}` — Delete an event (or series)
+### `DELETE /api/v1/events/{id}` - Delete an event (or series)
 
 **Path Parameters:**
 
@@ -85,8 +85,8 @@ API for managing calendar events, including recurring series.
 
 **Responses:**
 
-- `204` — Event(s) deleted
-- `404` — Empty object
+- `204` - Event(s) deleted
+- `404` - Empty object
 
 ---
 
