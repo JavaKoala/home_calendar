@@ -1,0 +1,7 @@
+# Home Calendar API
+
+> Backend API for managing calendar events, including recurring series. Built with Ruby on Rails. The frontend is at https://github.com/JavaKoala/home-calendar-react.
+
+## API Documentation
+
+- llm.md
