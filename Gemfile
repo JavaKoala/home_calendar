@@ -31,6 +31,9 @@ gem 'openssl'
 # Include ostruct
 gem 'ostruct'
 
+# Use iCalendar for ical export
+gem 'icalendar', '~> 2.12'
+
 group :development, :test do
   gem 'bundler-audit', require: false
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
