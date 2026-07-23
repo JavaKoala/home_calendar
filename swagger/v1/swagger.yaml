@@ -191,7 +191,7 @@ paths:
           description: End of the date range
       responses:
         '200':
-          description: Returns the iCalendar file for the event
+          description: Returns the iCalendar file for the events
           content:
             text/calendar:
               schema:
