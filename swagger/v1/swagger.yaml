@@ -203,7 +203,7 @@ paths:
                 type: string
                 example: attachment; filename="home_calendar.ics"
         '400':
-          description: Missing or invalid parameters
+          description: Missing parameters
           content:
             text/plain:
               schema:
