@@ -16,7 +16,7 @@ module Api
         get api_v1_icalendar_index_path, params: { end: Event.last.end }
 
         assert_response :bad_request
-        assert_equal response.body, 'start and end parameters are required'
+        assert_equal 'start and end parameters are required', response.body
       end
 
       test 'should return bad request if end is not present' do
