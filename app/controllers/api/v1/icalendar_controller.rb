@@ -1,0 +1,18 @@
+module Api
+  module V1
+    class IcalendarController < ApplicationController
+      def index
+        if params[:start].present? && params[:end].present?
+          service = ICalService.new(event_start: params[:start], event_end: params[:end])
+
+          send_data service.icalendar.to_ical,
+                    filename: 'test.ics',
+                    type: 'text/calendar',
+                    disposition: 'attachment'
+        else
+          render status: :bad_request, plain: 'start and end parameters are required'
+        end
+      end
+    end
+  end
+end
