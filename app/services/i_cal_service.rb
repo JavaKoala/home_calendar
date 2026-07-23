@@ -20,6 +20,7 @@ class ICalService
   end
 
   def find_events
-    Event.where(start: @event_start..@event_end).or(Event.where(end: @event_start..@event_end))
+    t = Event.arel_table
+    Event.where(t[:start].lteq(@event_end).and(t[:end].gteq(@event_start)))
   end
 end
