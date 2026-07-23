@@ -8,12 +8,13 @@ class ICalServiceTest < ActiveSupport::TestCase
   end
 
   test 'returns events in window' do
-    Event.create(start: 1.hour.ago, end: Time.current)
-    Event.create(start: 2.weeks.ago, end: 1.week.ago)
+    Event.create!(start: 1.hour.ago, end: Time.current)
+    Event.create!(start: 2.weeks.ago, end: 1.week.ago)
+    Event.create!(start: 2.weeks.ago, end: 1.week.from_now)
 
     service = ICalService.new(event_start: 1.day.ago, event_end: Time.current)
 
-    assert_equal service.icalendar.events.count, 1
+    assert_equal 2, service.icalendar.events.count
   end
 
   test 'returns event parameters' do
