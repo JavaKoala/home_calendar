@@ -8,7 +8,7 @@ module Api
 
         assert_response :success
         assert_equal 'text/calendar', response.media_type
-        assert_match(/attachment; filename="test\.ics"/, response.headers['Content-Disposition'])
+        assert_match(/attachment; filename="home_calendar\.ics"/, response.headers['Content-Disposition'])
         assert_includes response.body, 'VCALENDAR'
       end
 

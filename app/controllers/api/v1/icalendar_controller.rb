@@ -6,7 +6,7 @@ module Api
           service = ICalService.new(event_start: params[:start], event_end: params[:end])
 
           send_data service.icalendar.to_ical,
-                    filename: 'test.ics',
+                    filename: 'home_calendar.ics',
                     type: 'text/calendar',
                     disposition: 'attachment'
         else
