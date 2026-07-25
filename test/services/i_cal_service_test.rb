@@ -22,8 +22,8 @@ class ICalServiceTest < ActiveSupport::TestCase
 
     service = ICalService.new(event_start: 1.day.ago, event_end: Time.current)
 
-    assert_equal service.icalendar.events.first.dtstart, event.start.to_date
-    assert_equal service.icalendar.events.first.dtend, event.end.to_date
+    assert_equal service.icalendar.events.first.dtstart, event.start
+    assert_equal service.icalendar.events.first.dtend, event.end
     assert_equal service.icalendar.events.first.summary, event.title
   end
 end
