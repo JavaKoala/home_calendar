@@ -5,7 +5,7 @@ module Api
         if params[:start].present? && params[:end].present?
           service = ICalService.new(event_start: params[:start], event_end: params[:end])
 
-          send_data service.icalendar.to_ical,
+          send_data service.to_ical,
                     filename: 'home_calendar.ics',
                     type: 'text/calendar',
                     disposition: 'attachment'
