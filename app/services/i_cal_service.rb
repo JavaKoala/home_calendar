@@ -8,7 +8,7 @@ class ICalService
 
   def icalendar
     calendar = Icalendar::Calendar.new
-    find_events.each do |event|
+    find_events.find_each do |event|
       calendar.event do |e|
         e.dtstart = event.start
         e.dtend = event.end
