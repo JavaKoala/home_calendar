@@ -18,7 +18,7 @@ class ICalServiceTest < ActiveSupport::TestCase
   end
 
   test 'returns event parameters' do
-    event = Event.create(start: 1.hour.ago, end: Time.current, title: 'Test title')
+    event = Event.create!(start: 1.hour.ago, end: Time.current, title: 'Test title')
 
     service = ICalService.new(event_start: 1.day.ago, event_end: Time.current)
 
