@@ -1,4 +1,4 @@
-class ICalService
+class ExportICalService
   def initialize(event_start:, event_end:)
     @event_start = event_start
     @event_end = event_end
@@ -8,10 +8,10 @@ class ICalService
 
   def icalendar
     calendar = Icalendar::Calendar.new
-    find_events.each do |event|
+    find_events.find_each do |event|
       calendar.event do |e|
-        e.dtstart = Icalendar::Values::Date.new(event.start)
-        e.dtend = Icalendar::Values::Date.new(event.end)
+        e.dtstart = event.start
+        e.dtend = event.end
         e.summary = event.title
       end
     end
