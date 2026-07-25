@@ -1,4 +1,4 @@
-class ICalService
+class ExportICalService
   def initialize(event_start:, event_end:)
     @event_start = event_start
     @event_end = event_end
