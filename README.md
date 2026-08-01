@@ -15,7 +15,7 @@ https://brew.sh
 brew install mysql
 Don't forget to secure your installation!
 
-### Install Ruby version 4.0.5
+### Install Ruby version 4.0.6
 
 I like rbenv, https://github.com/rbenv/rbenv
 
