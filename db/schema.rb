@@ -10,15 +10,17 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 20_240_804_123_302) do
-  create_table 'events', charset: 'utf8mb4', collation: 'utf8mb4_bin', force: :cascade do |t|
-    t.string 'title'
-    t.datetime 'start', precision: nil
-    t.datetime 'end', precision: nil
-    t.string 'color'
-    t.datetime 'created_at', precision: nil, null: false
-    t.datetime 'updated_at', precision: nil, null: false
-    t.string 'recurring_uuid'
-    t.index ['recurring_uuid'], name: 'index_events_on_recurring_uuid'
+ActiveRecord::Schema[8.1].define(version: 2026_08_15_133614) do
+  create_table "events", charset: "utf8mb4", collation: "utf8mb4_bin", force: :cascade do |t|
+    t.string "color"
+    t.datetime "created_at", precision: nil, null: false
+    t.datetime "end", precision: nil
+    t.string "recurring_uuid"
+    t.datetime "start", precision: nil
+    t.string "title"
+    t.datetime "updated_at", precision: nil, null: false
+    t.index ["end"], name: "index_events_on_end"
+    t.index ["recurring_uuid"], name: "index_events_on_recurring_uuid"
+    t.index ["start"], name: "index_events_on_start"
   end
 end
