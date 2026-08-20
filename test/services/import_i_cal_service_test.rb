@@ -1,6 +1,13 @@
 require 'test_helper'
 
 class ImportICalServiceTest < ActiveSupport::TestCase
+  test 'successful result' do
+    ics_file = file_fixture('home_calendar.ics').read
+    result = ImportICalService.new(ics_file).import
+
+    assert_equal result.success?, true
+  end
+
   test 'creates event' do
     ics_file = file_fixture('home_calendar.ics').read
 
