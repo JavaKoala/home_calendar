@@ -6,7 +6,7 @@ class ImportICalService
   def import
     events = Icalendar::Event.parse(@ics_file)
     events.each do |event|
-      Event.create(
+      Event.find_or_create_by!(
         start: event.dtstart,
         end: event.dtend,
         title: event.summary
