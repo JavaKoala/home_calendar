@@ -1,4 +1,6 @@
 class ImportICalService
+  ImportResult = Data.define(:success?, :error)
+
   def initialize(ics_file)
     @ics_file = ics_file
   end
@@ -12,5 +14,7 @@ class ImportICalService
         title: event.summary
       )
     end
+
+    ImportResult.new(success?: true, error: nil)
   end
 end
