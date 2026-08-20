@@ -20,13 +20,7 @@ class ImportICalService
     calendars.each do |calendar|
       events = calendar.events
       validate_events(events)
-      events.each do |event|
-        Event.find_or_create_by(
-          start: event.dtstart,
-          end: event.dtend,
-          title: event.summary
-        )
-      end
+      upsert_events(events)
     end
   end
 
@@ -38,5 +32,13 @@ class ImportICalService
         title: event.summary
       ).validate!
     end
+  end
+
+  def upsert_events(events)
+    event_map = events.map { |event| { start: event.dtstart, end: event.dtend, title: event.summary } }
+    Event.upsert_all(
+      event_map,
+      on_duplicate: :skip
+    )
   end
 end
