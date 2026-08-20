@@ -34,4 +34,12 @@ class ImportICalServiceTest < ActiveSupport::TestCase
     assert_equal result.success?, false
     assert_equal result.error_message, 'Invalid iCalendar input line: Invalid Import'
   end
+
+  test 'it does not create events from invalid file' do
+    ics_file = file_fixture('invalid_import.ics').read
+
+    assert_no_difference 'Event.count' do
+      ImportICalService.new(ics_file).import
+    end
+  end
 end
