@@ -42,4 +42,12 @@ class ImportICalServiceTest < ActiveSupport::TestCase
       ImportICalService.new(ics_file).import
     end
   end
+
+  test 'invalid event' do
+    ics_file = file_fixture('invalid_event.ics').read
+    result = ImportICalService.new(ics_file).import
+
+    assert_equal result.success?, false
+    assert_equal result.error_message, 'Validation failed: End can\'t be before start'
+  end
 end
