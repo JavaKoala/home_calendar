@@ -20,7 +20,7 @@ class ImportICalService
     end
 
     ImportResult.new(success?: true, error_message: nil)
-  rescue Icalendar::Parser::ParseError => e
+  rescue Icalendar::Parser::ParseError, ActiveRecord::RecordInvalid => e
     ImportResult.new(success?: false, error_message: e.message)
   end
 end
