@@ -19,13 +19,24 @@ class ImportICalService
   def import_calendars(calendars)
     calendars.each do |calendar|
       events = calendar.events
+      validate_events(events)
       events.each do |event|
-        Event.find_or_create_by!(
+        Event.find_or_create_by(
           start: event.dtstart,
           end: event.dtend,
           title: event.summary
         )
       end
+    end
+  end
+
+  def validate_events(events)
+    events.each do |event|
+      Event.new(
+        start: event.dtstart,
+        end: event.dtend,
+        title: event.summary
+      ).validate!
     end
   end
 end
