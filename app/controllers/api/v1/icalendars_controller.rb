@@ -17,6 +17,10 @@ module Api
       end
 
       def create
+        ics_file = params[:file]
+
+        ImportICalService.new(ics_file.read).import
+
         render status: :created, plain: 'Imported calendar'
       end
     end

@@ -27,7 +27,11 @@ module Api
       end
 
       test 'should import calendar' do
-        post api_v1_icalendar_path
+        ics_file = fixture_file_upload('home_calendar.ics', 'text/calendar')
+
+        assert_difference 'Event.count' do
+          post api_v1_icalendar_path, params: { file: ics_file }
+        end
 
         assert_response :created
         assert_equal response.body, 'Imported calendar'
