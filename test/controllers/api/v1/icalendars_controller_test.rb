@@ -2,9 +2,9 @@ require 'test_helper'
 
 module Api
   module V1
-    class IcalendarControllerTest < ActionDispatch::IntegrationTest
-      test 'should get index' do
-        get api_v1_icalendar_index_path, params: { start: Event.last.start, end: Event.last.end }
+    class IcalendarsControllerTest < ActionDispatch::IntegrationTest
+      test 'should get show' do
+        get api_v1_icalendar_path, params: { start: Event.last.start, end: Event.last.end }
 
         assert_response :success
         assert_equal 'text/calendar', response.media_type
@@ -13,17 +13,24 @@ module Api
       end
 
       test 'should return bad request if start is not present' do
-        get api_v1_icalendar_index_path, params: { end: Event.last.end }
+        get api_v1_icalendar_path, params: { end: Event.last.end }
 
         assert_response :bad_request
         assert_equal 'start and end parameters are required', response.body
       end
 
       test 'should return bad request if end is not present' do
-        get api_v1_icalendar_index_path, params: { start: Event.last.start }
+        get api_v1_icalendar_path, params: { start: Event.last.start }
 
         assert_response :bad_request
         assert_equal response.body, 'start and end parameters are required'
+      end
+
+      test 'should import calendar' do
+        post api_v1_icalendar_path
+
+        assert_response :created
+        assert_equal response.body, 'Imported calendar'
       end
     end
   end
