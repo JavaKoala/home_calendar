@@ -1,7 +1,9 @@
 module Api
   module V1
-    class IcalendarController < ApplicationController
-      def index
+    class IcalendarsController < ApplicationController
+      protect_from_forgery with: :null_session
+
+      def show
         if params[:start].present? && params[:end].present?
           service = ExportICalService.new(event_start: params[:start], event_end: params[:end])
 
@@ -12,6 +14,10 @@ module Api
         else
           render status: :bad_request, plain: 'start and end parameters are required'
         end
+      end
+
+      def create
+        render status: :created, plain: 'Imported calendar'
       end
     end
   end
