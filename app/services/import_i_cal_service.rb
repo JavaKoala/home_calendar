@@ -36,9 +36,11 @@ class ImportICalService
 
   def upsert_events(events)
     event_map = events.map { |event| { start: event.dtstart, end: event.dtend, title: event.summary } }
-    Event.upsert_all(
-      event_map,
-      on_duplicate: :skip
-    )
+    event_map.each_slice(1000) do |event_batch|
+      Event.upsert_all(
+        event_batch,
+        on_duplicate: :skip
+      )
+    end
   end
 end
