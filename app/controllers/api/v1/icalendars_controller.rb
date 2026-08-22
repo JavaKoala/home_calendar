@@ -19,9 +19,13 @@ module Api
       def create
         ics_file = params[:file]
 
-        ImportICalService.new(ics_file.read).import
+        if ics_file.respond_to?(:read) && ics_file.content_type == 'text/calendar'
+          ImportICalService.new(ics_file.read).import
 
-        render status: :created, plain: 'Imported calendar'
+          render status: :created, plain: 'Imported calendar'
+        else
+          render status: :unsupported_media_type, plain: 'ics file is required'
+        end
       end
     end
   end

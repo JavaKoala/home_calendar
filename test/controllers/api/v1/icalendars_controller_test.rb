@@ -36,6 +36,22 @@ module Api
         assert_response :created
         assert_equal response.body, 'Imported calendar'
       end
+
+      test 'should return unsupported media type for invalid file' do
+        post api_v1_icalendar_path, params: { file: 'invalid' }
+
+        assert_response :unsupported_media_type
+        assert_equal response.body, 'ics file is required'
+      end
+
+      test 'should return unsupported media type for invalid media type' do
+        ics_file = fixture_file_upload('home_calendar.ics', 'text/application')
+
+        post api_v1_icalendar_path, params: { file: ics_file }
+
+        assert_response :unsupported_media_type
+        assert_equal response.body, 'ics file is required'
+      end
     end
   end
 end
