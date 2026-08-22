@@ -52,6 +52,17 @@ module Api
         assert_response :unsupported_media_type
         assert_equal response.body, 'ics file is required'
       end
+
+      test 'should not import invalid file' do
+        ics_file = fixture_file_upload('invalid_event.ics', 'text/calendar')
+
+        assert_no_difference 'Event.count' do
+          post api_v1_icalendar_path, params: { file: ics_file }
+        end
+
+        assert_response :bad_request
+        assert_equal response.body, 'Validation failed: End can\'t be before start'
+      end
     end
   end
 end
