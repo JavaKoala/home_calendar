@@ -17,6 +17,15 @@ class ImportICalServiceTest < ActiveSupport::TestCase
     end
   end
 
+  test 'import values' do
+    ics_file = file_fixture('home_calendar.ics').read
+    ImportICalService.new(ics_file).import
+
+    event = Event.find_by(title: 'TEST')
+    assert_equal event.color, Event::DEFAULT_COLOR
+    assert event.import_uuid.present?
+  end
+
   test 'idempotent import' do
     ics_file = file_fixture('home_calendar.ics').read
     import_service = ImportICalService.new(ics_file)
