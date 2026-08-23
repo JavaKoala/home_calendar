@@ -17,11 +17,8 @@ class ImportICalService
   private
 
   def import_calendars(calendars)
-    calendars.each do |calendar|
-      events = calendar.events
-      validate_events(events)
-      upsert_events(events)
-    end
+    calendars.each { |calendar| validate_events(calendar.events) }
+    calendars.each { |calendar| upsert_events(calendar.events) } # rubocop:disable Style/CombinableLoops
   end
 
   def validate_events(events)
