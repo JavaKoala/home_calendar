@@ -32,12 +32,24 @@ class ImportICalService
   end
 
   def upsert_events(events)
-    event_map = events.map { |event| { start: event.dtstart, end: event.dtend, title: event.summary } }
-    event_map.each_slice(1000) do |event_batch|
+    event_map(events).each_slice(1000) do |event_batch|
       Event.upsert_all(
         event_batch,
         on_duplicate: :skip
       )
+    end
+  end
+
+  def event_map(events)
+    events.map do |event|
+      {
+        start: event.dtstart,
+        end: event.dtend,
+        title: event.summary,
+        import_uuid: Digest::UUID.uuid_v5(
+          Digest::UUID::DNS_NAMESPACE, "#{event.dtstart.iso8601}#{event.dtend.iso8601}#{event.summary}"
+        )
+      }
     end
   end
 end
