@@ -208,22 +208,6 @@ paths:
             text/plain:
               schema:
                 type: string
-    post:
-      summary: Upload an ICS file
-      requestBody:
-        required: true
-        content:
-          multipart/form-data:
-            schema:
-              type: object
-              properties:
-                file:
-                  type: string
-                  format: binary
-                  description: The .ics calendar file to upload
-      responses:
-        '201':
-          description: File uploaded successfully
 components:
   schemas:
     Event:
