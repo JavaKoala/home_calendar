@@ -36,7 +36,7 @@ class ImportICalServiceTest < ActiveSupport::TestCase
     end
   end
 
-  test 'unsucessful result' do
+  test 'unsuccessful result' do
     ics_file = file_fixture('invalid_import.ics').read
     result = ImportICalService.new(ics_file).import
 
