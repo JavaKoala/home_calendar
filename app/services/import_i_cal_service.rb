@@ -43,7 +43,6 @@ class ImportICalService
         start: event.dtstart,
         end: event.dtend,
         title: event.summary,
-        color: Event::DEFAULT_COLOR,
         import_uuid: event.uid
       }
     end

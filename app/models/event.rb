@@ -1,8 +1,6 @@
 class Event < ApplicationRecord
   include RecurringEvents
 
-  DEFAULT_COLOR = '#3b82f6'.freeze
-
   attr_accessor :recurring_times, :recurring_schedule, :apply_to_series
 
   validates :start, :end, presence: true

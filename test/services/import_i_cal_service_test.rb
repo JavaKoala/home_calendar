@@ -22,7 +22,6 @@ class ImportICalServiceTest < ActiveSupport::TestCase
     ImportICalService.new(ics_file).import
 
     event = Event.find_by(title: 'TEST')
-    assert_equal event.color, Event::DEFAULT_COLOR
     assert event.import_uuid.present?
   end
 
