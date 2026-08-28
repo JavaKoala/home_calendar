@@ -214,10 +214,14 @@ paths:
       requestBody:
         required: true
         content:
-          text/calendar:
+          multipart/form-data:
             schema:
-              type: string
-              format: binary
+              type: object
+              properties:
+                file:
+                  type: string
+                  format: binary
+                  description: The .ics calendar file to upload
       responses:
         '201':
           description: Calendar imported successfully
