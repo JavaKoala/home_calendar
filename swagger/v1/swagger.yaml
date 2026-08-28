@@ -224,6 +224,9 @@ paths:
                   type: string
                   format: binary
                   description: The .ics calendar file to upload
+            encoding:
+              file:
+                contentType: text/calendar
       responses:
         '201':
           description: Calendar imported successfully
