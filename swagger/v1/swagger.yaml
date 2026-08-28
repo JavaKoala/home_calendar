@@ -217,7 +217,9 @@ paths:
           multipart/form-data:
             schema:
               type: object
-              properties:
+required:
+  - file
+properties:
                 file:
                   type: string
                   format: binary
