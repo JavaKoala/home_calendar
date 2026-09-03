@@ -15,7 +15,7 @@ ActiveRecord::Schema[8.1].define(version: 2026_09_03_025224) do
     t.string "color"
     t.datetime "created_at", precision: nil, null: false
     t.datetime "end", precision: nil
-    t.string "ics_uid"
+    t.string "ics_uid", default: -> { "(uuid())" }
     t.string "recurring_uuid"
     t.datetime "start", precision: nil
     t.text "title"
