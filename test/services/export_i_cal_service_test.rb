@@ -18,12 +18,13 @@ class ExportICalServiceTest < ActiveSupport::TestCase
   end
 
   test 'returns event parameters' do
-    event = Event.create!(start: 1.hour.ago, end: Time.current, title: 'Test title')
+    event = Event.first
 
-    service = ExportICalService.new(event_start: 1.day.ago, event_end: Time.current)
+    service = ExportICalService.new(event_start: event.start, event_end: event.end)
 
     assert_equal service.icalendar.events.first.dtstart, event.start
     assert_equal service.icalendar.events.first.dtend, event.end
     assert_equal service.icalendar.events.first.summary, event.title
+    assert_equal service.icalendar.events.first.uid, event.ics_uid
   end
 end
