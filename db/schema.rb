@@ -10,18 +10,18 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.1].define(version: 2026_08_23_123453) do
+ActiveRecord::Schema[8.1].define(version: 2026_09_03_025224) do
   create_table "events", charset: "utf8mb4", collation: "utf8mb4_bin", force: :cascade do |t|
     t.string "color"
     t.datetime "created_at", precision: nil, null: false
     t.datetime "end", precision: nil
-    t.string "import_uuid"
+    t.string "ics_uid"
     t.string "recurring_uuid"
     t.datetime "start", precision: nil
     t.text "title"
     t.datetime "updated_at", precision: nil, null: false
     t.index ["end"], name: "index_events_on_end"
-    t.index ["import_uuid"], name: "index_events_on_import_uuid", unique: true
+    t.index ["ics_uid"], name: "index_events_on_ics_uid", unique: true
     t.index ["recurring_uuid"], name: "index_events_on_recurring_uuid"
     t.index ["start"], name: "index_events_on_start"
   end
