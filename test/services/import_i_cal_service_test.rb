@@ -22,7 +22,7 @@ class ImportICalServiceTest < ActiveSupport::TestCase
     ImportICalService.new(ics_file).import
 
     event = Event.find_by(title: 'TEST')
-    assert event.import_uuid.present?
+    assert event.ics_uid.present?
   end
 
   test 'idempotent import' do

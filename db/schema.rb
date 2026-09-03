@@ -10,12 +10,12 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.1].define(version: 2026_09_03_032056) do
+ActiveRecord::Schema[8.1].define(version: 2026_09_03_032428) do
   create_table "events", charset: "utf8mb4", collation: "utf8mb4_bin", force: :cascade do |t|
     t.string "color"
     t.datetime "created_at", precision: nil, null: false
     t.datetime "end", precision: nil
-    t.string "ics_uid", default: -> { "(uuid())" }
+    t.string "ics_uid", default: -> { "(uuid())" }, null: false
     t.string "recurring_uuid"
     t.datetime "start", precision: nil
     t.text "title"
