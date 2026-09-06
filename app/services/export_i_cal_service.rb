@@ -13,6 +13,7 @@ class ExportICalService
         e.dtstart = event.start
         e.dtend = event.end
         e.summary = event.title
+        e.uid = event.ics_uid
       end
     end
 

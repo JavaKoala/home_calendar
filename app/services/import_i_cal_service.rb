@@ -43,7 +43,7 @@ class ImportICalService
         start: event.dtstart,
         end: event.dtend,
         title: event.summary,
-        import_uuid: event.uid
+        ics_uid: event.uid
       }
     end
   end
