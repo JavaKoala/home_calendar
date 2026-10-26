@@ -6,6 +6,8 @@ class Event < ApplicationRecord
   validates :start, :end, presence: true
   validate :end_before_start, :more_than_24_hours
 
+  scope :title_search, ->(search) { where('MATCH(title) AGAINST(? IN NATURAL LANGUAGE MODE)', search) }
+
   def end_before_start
     return if self.end.blank? || start.blank?
 
