@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.1].define(version: 2026_09_03_032428) do
+ActiveRecord::Schema[8.1].define(version: 2026_10_26_220701) do
   create_table "events", charset: "utf8mb4", collation: "utf8mb4_bin", force: :cascade do |t|
     t.string "color"
     t.datetime "created_at", precision: nil, null: false
@@ -24,5 +24,6 @@ ActiveRecord::Schema[8.1].define(version: 2026_09_03_032428) do
     t.index ["ics_uid"], name: "index_events_on_ics_uid", unique: true
     t.index ["recurring_uuid"], name: "index_events_on_recurring_uuid"
     t.index ["start"], name: "index_events_on_start"
+    t.index ["title"], name: "index_events_on_title", type: :fulltext
   end
 end

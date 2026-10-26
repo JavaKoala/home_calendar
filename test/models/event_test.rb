@@ -15,6 +15,16 @@ class EventTest < ActiveSupport::TestCase
     assert_equal ["can't be blank"], event.errors[:end]
   end
 
+  test 'should search for title' do
+    result = Event.title_search('MyString')
+
+    assert_equal result.count, 2
+  end
+
+  test 'empty array for no search results' do
+    assert_equal Event.title_search('invalid'), []
+  end
+
   test 'should not be valid when end is before start' do
     event = Event.new(start: 2.hours.from_now, end: Time.zone.now)
 
