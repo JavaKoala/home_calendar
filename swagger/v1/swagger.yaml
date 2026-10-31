@@ -282,6 +282,9 @@ components:
         recurring_uuid:
           type: string
           nullable: true
+        ics_uid:
+          type: string
+          nullable: true
       required:
         - id
         - start
