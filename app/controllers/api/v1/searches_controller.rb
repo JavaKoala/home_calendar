@@ -8,7 +8,7 @@ module Api
           @events = Event.title_search(params[:search])
           render json: @events
         else
-          render json: {}
+          render json: []
         end
       end
     end
