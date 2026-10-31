@@ -10,7 +10,7 @@ module Api
 
       test 'should return json' do
         get api_v1_searches_url
-        assert_equal response.parsed_body, {}
+        assert_equal response.parsed_body, []
       end
 
       test 'should return searched events' do
