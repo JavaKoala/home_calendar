@@ -246,6 +246,30 @@ paths:
             text/plain:
               schema:
                 type: string
+
+  /api/v1/searches:
+    get:
+      summary: Search events by title
+      operationId: searchEvents
+      description: |
+        Full-text search of event titles (MySQL natural language mode).
+        Returns an empty array when the search parameter is missing or blank.
+      parameters:
+        - in: query
+          name: search
+          required: false
+          schema:
+            type: string
+          description: Text to match against event titles
+      responses:
+        '200':
+          description: Matching events
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Event'
 components:
   schemas:
     Event:
