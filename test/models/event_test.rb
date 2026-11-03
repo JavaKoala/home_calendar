@@ -25,6 +25,15 @@ class EventTest < ActiveSupport::TestCase
     assert_equal Event.title_search('invalid'), []
   end
 
+  test 'should order search by start' do
+    latest_event = Event.last
+    latest_event.update!(start: Time.current, end: 1.hour.from_now)
+
+    result = Event.title_search('MyString')
+
+    assert_equal result.first, latest_event
+  end
+
   test 'should not be valid when end is before start' do
     event = Event.new(start: 2.hours.from_now, end: Time.zone.now)
 
