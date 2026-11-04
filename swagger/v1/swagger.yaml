@@ -253,6 +253,7 @@ paths:
       operationId: searchEvents
       description: |
         Full-text search of event titles (MySQL natural language mode).
+        Results are ordered by start descending and limited to 20 events.
         Returns an empty array when the search parameter is missing or blank.
       parameters:
         - in: query
@@ -263,11 +264,12 @@ paths:
           description: Text to match against event titles
       responses:
         '200':
-          description: Matching events
+          description: Up to 20 matching events, most recent start first
           content:
             application/json:
               schema:
                 type: array
+                maxItems: 20
                 items:
                   $ref: '#/components/schemas/Event'
 components:
